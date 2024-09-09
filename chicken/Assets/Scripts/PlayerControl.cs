@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -18,10 +19,11 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            myRB.AddForce(transform.forward * MoveSpeed) ;
+        Vector3 temp = myRB.velocity;
 
-        }
+        temp.x = Input.GetAxisRaw("Vertical") * MoveSpeed;
+        temp.z = Input.GetAxisRaw("Horizontal") * MoveSpeed;
+
+        myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right);
     }
 }
