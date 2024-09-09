@@ -9,6 +9,8 @@ public class PlayerControl : MonoBehaviour
 
     public float MoveSpeed = 10;
 
+    public float JumpHeight = 10
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,13 @@ public class PlayerControl : MonoBehaviour
         temp.x = Input.GetAxisRaw("Vertical") * MoveSpeed;
         temp.z = Input.GetAxisRaw("Horizontal") * MoveSpeed;
 
-        myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            temp.y = JumpHeight;
+        }
+
+        myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
+
+       
     }
 }
