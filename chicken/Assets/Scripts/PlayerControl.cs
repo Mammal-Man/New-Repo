@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
 
     public float MoveSpeed = 10;
 
-    public float JumpHeight = 10
+    public float JumpHeight = 10;
 
     // Start is called before the first frame update
     void Start()
