@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
     Vector2 camRot;
 
     public float MoveSpeed = 10;
+    public float sprintMulti 2.5f;
     public float JumpHeight = 5;
 
     public float mouseSens = 2;
@@ -50,6 +51,12 @@ public class PlayerControl : MonoBehaviour
 
         temp.x = Input.GetAxisRaw("Vertical") * MoveSpeed;
         temp.z = Input.GetAxisRaw("Horizontal") * MoveSpeed;
+
+        //Run for your life
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            temp.x *= sprintMulti;
+        }
 
         //Jump for joy
         if (Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, -transform.up, groundDetecDist))
