@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour
     public bool sprinting = false;
 
     public float MoveSpeed = 10;
-    public float sprintMulti 2.5f;
+    public float sprintMulti = 2.5f;
     public float JumpHeight = 5;
 
     public float mouseSens = 2;
@@ -62,7 +62,7 @@ public class PlayerControl : MonoBehaviour
         {temp.x = Input.GetAxisRaw("Vertical") * MoveSpeed *sprintMulti;}
 
         if (Input.GetKeyUp(KeyCode.LeftControl))
-        { sprinting = false; }
+        {sprinting = false;}
 
         temp.z = Input.GetAxisRaw("Horizontal") * MoveSpeed;
 
