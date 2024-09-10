@@ -19,24 +19,40 @@ public class PlayerControl : MonoBehaviour
     public float camRotLim = 90;
     // Start is called before the first frame update
     void Start()
-    {
+    { 
+        // Initialize components
         myRB = GetComponent<Rigidbody>();
+        playerCam = transform.GetChild(0).GetComponent<Camera>();
 
+        camRot = Vector2.zero;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //the Cameraman variables 
+        camRot.x += Input.GetAxisRaw("Mouse X") * mouseSens;
+        camRot.y += Input.GetAxisRaw("Mouse Y") * mouseSens;
+        
+        //Neck Brace
+        camRot.y = Mathf.Clamp(camRot.y, -camRotLim, camRotLim);
+        playerCam.transform.localRotation = Quaternion.AngleAxis(camRot.y, Vector3.left);
+        transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.up);
+        
+        //Movement variables
         Vector3 temp = myRB.velocity;
 
         temp.x = Input.GetAxisRaw("Vertical") * MoveSpeed;
         temp.z = Input.GetAxisRaw("Horizontal") * MoveSpeed;
 
+        //Jump function
         if (Input.GetKeyDown(KeyCode.Space))
         {
             temp.y = JumpHeight;
         }
-
+        // Use the Force Luke
         myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
     }
 }
