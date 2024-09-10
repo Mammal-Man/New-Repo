@@ -6,11 +6,17 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     Rigidbody myRB;
+    Camera playerCam;
+
+    Vector2 camRot;
 
     public float MoveSpeed = 10;
-
     public float JumpHeight = 5;
 
+    public float mouseSens = 2;
+    public float xSens = 2;
+    public float ySens = 2;
+    public float camRotLim = 90;
     // Start is called before the first frame update
     void Start()
     {
