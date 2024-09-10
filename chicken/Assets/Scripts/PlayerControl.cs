@@ -17,6 +17,9 @@ public class PlayerControl : MonoBehaviour
     public float xSens = 2;
     public float ySens = 2;
     public float camRotLim = 90;
+
+    public float groundDetecDist = 1;
+
     // Start is called before the first frame update
     void Start()
     { 
@@ -49,7 +52,7 @@ public class PlayerControl : MonoBehaviour
         temp.z = Input.GetAxisRaw("Horizontal") * MoveSpeed;
 
         //Jump for joy
-        if (Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, -transform.up, 1))
+        if (Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, -transform.up, groundDetecDist))
         {
             temp.y = JumpHeight;
         }
