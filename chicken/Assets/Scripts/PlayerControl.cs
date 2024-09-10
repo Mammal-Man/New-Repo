@@ -59,16 +59,18 @@ public class PlayerControl : MonoBehaviour
         //Run for your life
         if (!sprintTogOpt)
         {
-            if (Input.GetKey(KeyCode.LeftControl))
+            if (Input.GetKey(KeyCode.LeftShift))
             { sprinting = true; }
-            if (Input.GetKeyUp(KeyCode.LeftControl))
+            if (Input.GetKeyUp(KeyCode.LeftShift))
             { sprinting = false; }
         }
 
         if (sprintTogOpt)
         {
-            if (Input.GetKey(KeyCode.LeftControl) && vertMove > 0)
+            if (Input.GetKey(KeyCode.LeftShift) && vertMove > 0)
             { sprinting = true; }
+            if(vertMove <= 0)
+            { sprinting = false; }
         }
         if (!sprinting)
         { temp.x = vertMove * MoveSpeed; }
