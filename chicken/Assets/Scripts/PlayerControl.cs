@@ -32,7 +32,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Do the Hokey POkey and turn yourself around 
+        //Do the Hokey Pokey and turn yourself around 
         camRot.x += Input.GetAxisRaw("Mouse X") * mouseSens;
         camRot.y += Input.GetAxisRaw("Mouse Y") * mouseSens;
 
@@ -49,7 +49,7 @@ public class PlayerControl : MonoBehaviour
         temp.z = Input.GetAxisRaw("Horizontal") * MoveSpeed;
 
         //Jump for joy
-        if (Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, -transform.up, 0.1f))
+        if (Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, -transform.up, 1))
         {
             temp.y = JumpHeight;
         }
