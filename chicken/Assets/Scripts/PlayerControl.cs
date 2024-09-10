@@ -35,12 +35,13 @@ public class PlayerControl : MonoBehaviour
         //the Cameraman variables 
         camRot.x += Input.GetAxisRaw("Mouse X") * mouseSens;
         camRot.y += Input.GetAxisRaw("Mouse Y") * mouseSens;
-        
-        //Neck Brace
-        camRot.y = Mathf.Clamp(camRot.y, -camRotLim, camRotLim);
+
         playerCam.transform.localRotation = Quaternion.AngleAxis(camRot.y, Vector3.left);
         transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.up);
-        
+
+        //Neck Brace
+        camRot.y = Mathf.Clamp(camRot.y, -camRotLim, camRotLim);
+       
         //Movement variables
         Vector3 temp = myRB.velocity;
 
