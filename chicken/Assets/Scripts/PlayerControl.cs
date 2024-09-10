@@ -55,6 +55,7 @@ public class PlayerControl : MonoBehaviour
         //Movement variables
         Vector3 temp = myRB.velocity;
         float vertMove = Input.GetAxisRaw("Vertical");
+        float horizMove = Input.GetAxisRaw("Horizontal");
 
         //Run for your life
         if (!sprintTogOpt)
@@ -78,7 +79,7 @@ public class PlayerControl : MonoBehaviour
         if (sprinting)
         { temp.x = vertMove * MoveSpeed * sprintMulti; }
 
-        temp.z = Input.GetAxisRaw("Horizontal") * MoveSpeed;
+        temp.z = horizMove * MoveSpeed;
 
         //Jump for joy
         if (Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, -transform.up, groundDetecDist))
