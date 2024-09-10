@@ -61,7 +61,8 @@ public class PlayerControl : MonoBehaviour
         if (sprinting)
         {temp.x = Input.GetAxisRaw("Vertical") * MoveSpeed *sprintMulti;}
 
-        if(Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        { sprinting = false; }
 
         temp.z = Input.GetAxisRaw("Horizontal") * MoveSpeed;
 
