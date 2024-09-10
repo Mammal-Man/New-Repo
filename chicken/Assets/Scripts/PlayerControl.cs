@@ -18,7 +18,7 @@ public class PlayerControl : MonoBehaviour
     public float ySens = 2;
     public float camRotLim = 90;
 
-    public float groundDetecDist = 1;
+    public float groundDetecDist = 1.1f;
 
     // Start is called before the first frame update
     void Start()
