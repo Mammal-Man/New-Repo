@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
 
     public float MoveSpeed = 10;
 
-    public float JumpHeight = 10;
+    public float JumpHeight = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +32,5 @@ public class PlayerControl : MonoBehaviour
         }
 
         myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
-
-       
     }
 }
