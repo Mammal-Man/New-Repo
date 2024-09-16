@@ -110,4 +110,12 @@ public class PlayerControl : MonoBehaviour
 
         
     }
+
+    private void cooldown(bool condition, float timeLim)
+    { float timer = 0;
+
+        if (timer < timeLim)
+         timer += Time.deltaTime;
+            else
+            condition = true;
 }
