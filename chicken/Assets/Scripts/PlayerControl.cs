@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
     Camera playerCam;
 
     Vector2 camRot;
+    public Transform weaponslot;
 
     [Header("Player Stats")]
     public int MaxHealth = 100;
@@ -110,7 +111,8 @@ public class PlayerControl : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-
+        if (collision.gameObject.tag == "Weapon")
+        { collision.gameObject.transform.SetParent(weaponslot); }
     }
 
     // Time to get funky
