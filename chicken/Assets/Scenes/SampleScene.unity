@@ -510,7 +510,7 @@ MeshRenderer:
     firstSubMesh: 0
     subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
+  m_ProbeAnchor: {fileID: 1376669502}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_ReceiveGI: 1
@@ -591,6 +591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d001ef60e82084e817d068d33f5b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponslot: {fileID: 0}
   MaxHealth: 100
   CurrentHealth: 100
   HealVal: 20
