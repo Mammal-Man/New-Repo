@@ -78,6 +78,7 @@ public class PlayerControl : MonoBehaviour
             if(vertMove <= 0)
             { sprinting = false; }
         }
+
         if (!sprinting)
         { temp.x = vertMove * MoveSpeed; }
 
@@ -92,5 +93,17 @@ public class PlayerControl : MonoBehaviour
 
         // Use the Force Luke
         myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // I need a medic bag
+        if (CurrentHealth < MaxHealth && collision.gameObject.tag == "HealPickup")
+        { CurrentHealth += HealVal; }
+
+        if(CurrentHealth > MaxHealth)
+        { CurrentHealth = MaxHealth; }
+
+        Destroy(collision.gameObject);
     }
 }
