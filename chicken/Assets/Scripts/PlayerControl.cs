@@ -10,13 +10,17 @@ public class PlayerControl : MonoBehaviour
 
     Vector2 camRot;
 
-    public bool sprinting = false;
+    [Header("Player Stats")]
+    public int MaxHealth = 100;
+    public int CurrentHealth = 100;
+    public int HealVal = 20;
+
 
     [Header("Movement Settings")]
     public float MoveSpeed = 10;
     public float sprintMulti = 2.5f;
     public float JumpHeight = 5;
-
+    public bool sprinting = false;
 
     [Header("User Settings")]
     public bool sprintTogOpt = false;
@@ -25,6 +29,7 @@ public class PlayerControl : MonoBehaviour
     public float ySens = 2;
     public float camRotLim = 90;
 
+    [Header("Detection")]
     public float groundDetecDist = 1.1f;
 
     // Start is called before the first frame update
