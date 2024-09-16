@@ -99,11 +99,15 @@ public class PlayerControl : MonoBehaviour
     {
         // I need a medic bag
         if (CurrentHealth < MaxHealth && collision.gameObject.tag == "HealPickup")
-        { CurrentHealth += HealVal; }
+        {
+            CurrentHealth += HealVal;
 
-        if(CurrentHealth > MaxHealth)
-        { CurrentHealth = MaxHealth; }
+            if (CurrentHealth > MaxHealth)
+            { CurrentHealth = MaxHealth; }
 
-        Destroy(collision.gameObject);
+            Destroy(collision.gameObject);
+        }
+
+        
     }
 }
