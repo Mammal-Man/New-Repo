@@ -15,6 +15,8 @@ public class PlayerControl : MonoBehaviour
     public int CurrentHealth = 100;
     public int HealVal = 20;
 
+    [Header("WeaponStats")]
+    public bool canFire = true;
 
     [Header("Movement Settings")]
     public float MoveSpeed = 10;
@@ -75,7 +77,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift) && vertMove > 0)
             { sprinting = true; }
-            if(vertMove <= 0)
+            if (vertMove <= 0)
             { sprinting = false; }
         }
 
@@ -108,14 +110,23 @@ public class PlayerControl : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        
+
     }
 
+    // Time to get funky
     private void cooldown(bool condition, float timeLim)
-    { float timer = 0;
+    {
+        float timer = 0;
 
         if (timer < timeLim)
-         timer += Time.deltaTime;
-            else
+            timer += Time.deltaTime;
+        else
             condition = true;
+    }
+
+    IEnumerator cooldown(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canFire = true;
+    }
 }
