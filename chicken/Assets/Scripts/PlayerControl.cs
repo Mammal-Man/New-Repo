@@ -66,9 +66,10 @@ public class PlayerControl : MonoBehaviour
         transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.up);
 
         // FIRE!
-        if (Input.GetMouseButtonDown(0) && canFire)
+        if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0)
         {
             canFire = false;
+            CurrentClip--;
             StartCoroutine("cooldownFire");
         }
 
