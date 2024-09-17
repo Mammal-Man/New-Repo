@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HealPickup
   - Weapon
+  - AmmoPickkup
   layers:
   - Default
   - TransparentFX

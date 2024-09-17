@@ -18,6 +18,14 @@ public class PlayerControl : MonoBehaviour
 
     [Header("WeaponStats")]
     public bool canFire = true;
+    public int weaponID = -1;
+    public float fireRate = 0;
+    public float MaxAmmo = 0;
+    public float CurrentAmmo = 0;
+    public int fireMode = 0;
+    public float reloadAmount = 0;
+    public float clipSize = 0;
+    public float CurrentClip = 0;
 
     [Header("Movement Settings")]
     public float MoveSpeed = 10;
@@ -57,6 +65,16 @@ public class PlayerControl : MonoBehaviour
         playerCam.transform.localRotation = Quaternion.AngleAxis(camRot.y, Vector3.left);
         transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.up);
 
+        // FIRE!
+        if (Input.GetMouseButtonDown(0) && canFire)
+        {
+            canFire = false;
+            StartCoroutine("cooldownFire");
+        }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        { reloadClip(); }
+
         //Neck Brace
         camRot.y = Mathf.Clamp(camRot.y, -camRotLim, camRotLim);
 
@@ -82,11 +100,10 @@ public class PlayerControl : MonoBehaviour
             { sprinting = false; }
         }
 
-        if (!sprinting)
-        { temp.x = vertMove * MoveSpeed; }
-
         if (sprinting)
         { temp.x = vertMove * MoveSpeed * sprintMulti; }
+        else
+        { temp.x = vertMove * MoveSpeed; }
 
         temp.z = horizMove * MoveSpeed;
 
@@ -111,11 +128,50 @@ public class PlayerControl : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
+        // Arm Yourself
         if (collision.gameObject.tag == "Weapon")
-        { collision.gameObject.transform.SetParent(weaponslot); }
+        {
+            collision.gameObject.transform.SetPositionAndRotation(weaponslot.position, weaponslot.rotation);
+            collision.gameObject.transform.SetParent(weaponslot);
+
+            switch(collision.gameObject.name)
+            {
+                case "weapon1":
+                    
+                    weaponID = 0;    
+                    fireMode = 0;    
+                    fireRate = 1;
+                    CurrentClip = 1;
+                    clipSize = 1;
+                    MaxAmmo = 20;
+                    CurrentAmmo = 20;
+                    reloadAmount = 1;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        
+        // I need more booletts
+        if (CurrentAmmo < MaxAmmo && collision.gameObject.tag == "AmmoPickup")
+        {
+            CurrentAmmo += reloadAmount;
+
+            if (CurrentAmmo > MaxAmmo)
+            { CurrentAmmo = MaxAmmo; }
+
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "Weapon")
+        {
+            collision.gameObject.transform.SetPositionAndRotation(weaponslot.position, weaponslot.rotation);
+            collision.gameObject.transform.SetParent(weaponslot);
+        }
     }
 
-    // Time to get funky
+    // Wibbly wobbly timey wimey
     private void cooldown(bool condition, float timeLim)
     {
         float timer = 0;
@@ -126,9 +182,20 @@ public class PlayerControl : MonoBehaviour
             condition = true;
     }
 
+    // Put the ammo in the gun
+    public void reloadClip()
+    {
+        if(CurrentClip < clipSize)
+        {
+            float reloadCount = Mathf.Min(CurrentAmmo, clipSize - CurrentClip);
+            CurrentClip += reloadCount;
+            CurrentAmmo -= reloadCount;
+        }
+    }
+
     IEnumerator cooldown(float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(fireRate);
         canFire = true;
     }
 }
