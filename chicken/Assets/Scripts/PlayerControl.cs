@@ -28,6 +28,7 @@ public class PlayerControl : MonoBehaviour
     public float reloadAmount = 0;
     public float clipSize = 0;
     public float CurrentClip = 0;
+    public float bulletLifespan = 0;
 
     [Header("Movement Settings")]
     public float MoveSpeed = 10;
@@ -68,10 +69,11 @@ public class PlayerControl : MonoBehaviour
         transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.up);
 
         // FIRE!
-        if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0)
+        if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0 && weaponID > -1)
         {
             GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
             s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
+            Destroy(s, bulletLifespan);
 
             canFire = false;
             CurrentClip--;
@@ -152,6 +154,8 @@ public class PlayerControl : MonoBehaviour
                     MaxAmmo = 20;
                     CurrentAmmo = 20;
                     reloadAmount = 1;
+                    bulletLifespan = 5;
+                    shotSpeed = 100;
                     break;
 
                 default:
