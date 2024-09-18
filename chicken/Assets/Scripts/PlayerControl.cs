@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
     Camera playerCam;
 
     Vector2 camRot;
-    public Transform weaponslot;
+    public Transform weaponSlot;
 
     [Header("Player Stats")]
     public int MaxHealth = 100;
@@ -17,6 +17,8 @@ public class PlayerControl : MonoBehaviour
     public int HealVal = 20;
 
     [Header("WeaponStats")]
+    public GameObject shot;
+    public float shotSpeed = 15;
     public bool canFire = true;
     public int weaponID = -1;
     public float fireRate = 0;
@@ -68,6 +70,9 @@ public class PlayerControl : MonoBehaviour
         // FIRE!
         if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0)
         {
+            GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
+            s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
+
             canFire = false;
             CurrentClip--;
             StartCoroutine("cooldownFire");
@@ -132,8 +137,8 @@ public class PlayerControl : MonoBehaviour
         // Arm Yourself
         if (collision.gameObject.tag == "Weapon")
         {
-            collision.gameObject.transform.SetPositionAndRotation(weaponslot.position, weaponslot.rotation);
-            collision.gameObject.transform.SetParent(weaponslot);
+            collision.gameObject.transform.SetPositionAndRotation(weaponSlot.position, weaponSlot.rotation);
+            collision.gameObject.transform.SetParent(weaponSlot);
 
             switch(collision.gameObject.name)
             {
@@ -167,8 +172,8 @@ public class PlayerControl : MonoBehaviour
 
         if (collision.gameObject.tag == "Weapon")
         {
-            collision.gameObject.transform.SetPositionAndRotation(weaponslot.position, weaponslot.rotation);
-            collision.gameObject.transform.SetParent(weaponslot);
+            collision.gameObject.transform.SetPositionAndRotation(weaponSlot.position, weaponSlot.rotation);
+            collision.gameObject.transform.SetParent(weaponSlot);
         }
     }
 
