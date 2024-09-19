@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour
     public int MaxHealth = 100;
     public int CurrentHealth = 100;
     public int HealVal = 20;
+    public int AmmoRefill = 20;
 
     [Header("WeaponStats")]
     public GameObject shot;
@@ -132,6 +133,17 @@ public class PlayerControl : MonoBehaviour
 
             if (CurrentHealth > MaxHealth)
             { CurrentHealth = MaxHealth; }
+
+            Destroy(collision.gameObject);
+        }
+
+        //Ammo refill
+        if (CurrentAmmo < MaxAmmo && collision.gameObject.tag == "AmmoPickup")
+        {
+            CurrentAmmo += AmmoRefill;
+
+            if (CurrentAmmo > MaxAmmo)
+            { CurrentAmmo = MaxAmmo; }
 
             Destroy(collision.gameObject);
         }
