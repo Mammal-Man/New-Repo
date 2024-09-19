@@ -70,7 +70,7 @@ public class PlayerControl : MonoBehaviour
         transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.up);
 
         // FIRE!
-        if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0 && weaponID > -1)
+        if (Input.GetMouseButton(0) && canFire && CurrentClip > 0 && weaponID > -1)
         {
             GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
             s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
@@ -166,6 +166,20 @@ public class PlayerControl : MonoBehaviour
                     MaxAmmo = 20;
                     CurrentAmmo = 20;
                     reloadAmount = 1;
+                    bulletLifespan = 1;
+                    shotSpeed = 10000;
+                    break;
+
+                case "Assault Rifle":
+                    
+                    weaponID = 1;    
+                    fireMode = 1;    
+                    fireRate = 0.1f;
+                    CurrentClip = 30;
+                    clipSize = 30;
+                    MaxAmmo = 150;
+                    CurrentAmmo = 150;
+                    reloadAmount = 30;
                     bulletLifespan = 1;
                     shotSpeed = 10000;
                     break;
