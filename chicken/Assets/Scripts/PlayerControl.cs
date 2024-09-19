@@ -18,7 +18,7 @@ public class PlayerControl : MonoBehaviour
 
     [Header("WeaponStats")]
     public GameObject shot;
-    public float shotSpeed = 15;
+    public float shotSpeed = 0;
     public bool canFire = true;
     public int weaponID = -1;
     public float fireRate = 0;
@@ -144,7 +144,7 @@ public class PlayerControl : MonoBehaviour
 
             switch(collision.gameObject.name)
             {
-                case "weapon1":
+                case "Bazooka":
                     
                     weaponID = 0;    
                     fireMode = 0;    
@@ -154,8 +154,8 @@ public class PlayerControl : MonoBehaviour
                     MaxAmmo = 20;
                     CurrentAmmo = 20;
                     reloadAmount = 1;
-                    bulletLifespan = 5;
-                    shotSpeed = 100;
+                    bulletLifespan = 1;
+                    shotSpeed = 10000;
                     break;
 
                 default:
@@ -195,15 +195,31 @@ public class PlayerControl : MonoBehaviour
     // Put the ammo in the gun
     public void reloadClip()
     {
-        if(CurrentClip < clipSize)
+        if(CurrentClip >= clipSize)
         {
-            float reloadCount = Mathf.Min(CurrentAmmo, clipSize - CurrentClip);
-            CurrentClip += reloadCount;
-            CurrentAmmo -= reloadCount;
+            return;
+        }
+        else
+        {
+            float reloadCount = clipSize - CurrentClip;
+
+            if(CurrentAmmo < reloadCount)
+            {
+                CurrentClip += CurrentAmmo;
+                CurrentAmmo = 0;
+                return;
+            }
+
+            else
+            {
+                CurrentClip += reloadCount;
+                CurrentAmmo -= reloadCount;
+                return;
+            }
         }
     }
 
-    IEnumerator cooldown(float time)
+    IEnumerator cooldownFire()
     {
         yield return new WaitForSeconds(fireRate);
         canFire = true;
