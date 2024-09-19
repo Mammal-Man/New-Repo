@@ -60,7 +60,7 @@ public class PlayerControl : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
         //Do the Hokey Pokey and turn yourself around 
         camRot.x += Input.GetAxisRaw("Mouse X") * mouseSens;
         camRot.y += Input.GetAxisRaw("Mouse Y") * mouseSens;
