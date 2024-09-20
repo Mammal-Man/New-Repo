@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour
 
     [Header("WeaponStats")]
     public GameObject shot;
-    public float shotSpeed = 0;
+    public float shotSpeed = 10000;
     public bool canFire = true;
     public int weaponID = -1;
     public float fireRate = 0;
@@ -70,17 +70,46 @@ public class PlayerControl : MonoBehaviour
         transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.up);
 
         // FIRE!
-        if (Input.GetMouseButton(0) && canFire && CurrentClip > 0 && weaponID > -1)
+        if(fireMode > 1)
         {
-            GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
-            s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
-            Destroy(s, bulletLifespan);
+            if (Input.GetMouseButton(0) && canFire && CurrentClip > 0 && weaponID > -1)
+            {
+                GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
+                s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
+                Destroy(s, bulletLifespan);
 
-            canFire = false;
-            CurrentClip--;
-            StartCoroutine("cooldownFire");
+                canFire = false;
+                CurrentClip--;
+                StartCoroutine("cooldownFire");
+            }
+        }
+        else if (fireMode < 1)
+        {
+            if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0 && weaponID > -1)
+            {
+                GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
+                s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
+                Destroy(s, bulletLifespan);
+
+                canFire = false;
+                CurrentClip--;
+                StartCoroutine("cooldownFire");
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0 && weaponID > -1)
+            {
+                GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
+                s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
+                Destroy(s, bulletLifespan);
+
+                canFire = false;
+                StartCoroutine("cooldownFire");
+            }
         }
 
+        //Reload
         if(Input.GetKeyDown(KeyCode.R))
         { reloadClip(); }
 
@@ -156,24 +185,23 @@ public class PlayerControl : MonoBehaviour
 
             switch(collision.gameObject.name)
             {
-                case "Bazooka":
+                case "Grenade Launcher":
                     
                     weaponID = 0;    
                     fireMode = 0;    
                     fireRate = 1;
-                    CurrentClip = 1;
-                    clipSize = 1;
-                    MaxAmmo = 20;
-                    CurrentAmmo = 20;
-                    reloadAmount = 1;
+                    CurrentClip = 6;
+                    clipSize = 6;
+                    MaxAmmo = 30;
+                    CurrentAmmo = 30;
+                    reloadAmount = 6;
                     bulletLifespan = 1;
-                    shotSpeed = 10000;
                     break;
 
                 case "Assault Rifle":
                     
                     weaponID = 1;    
-                    fireMode = 1;    
+                    fireMode = 2;    
                     fireRate = 0.1f;
                     CurrentClip = 30;
                     clipSize = 30;
@@ -181,7 +209,19 @@ public class PlayerControl : MonoBehaviour
                     CurrentAmmo = 150;
                     reloadAmount = 30;
                     bulletLifespan = 1;
-                    shotSpeed = 10000;
+                    break;
+
+                case "Grappling Hook":
+
+                    weaponID = 2;
+                    fireMode = 1;
+                    fireRate = 0.1f;
+                    CurrentClip = 1;
+                    clipSize = 1;
+                    MaxAmmo = 1;
+                    CurrentAmmo = 1;
+                    reloadAmount = 1;
+                    bulletLifespan = 1;
                     break;
 
                 default:
