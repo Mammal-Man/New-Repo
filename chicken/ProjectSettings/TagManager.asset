@@ -8,6 +8,7 @@ TagManager:
   - Weapon
   - Shot
   - AmmoPickup
+  - Ground
   layers:
   - Default
   - TransparentFX

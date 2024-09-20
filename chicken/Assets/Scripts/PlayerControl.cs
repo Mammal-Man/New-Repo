@@ -16,6 +16,8 @@ public class PlayerControl : MonoBehaviour
     public int CurrentHealth = 100;
     public int HealVal = 20;
     public int AmmoRefill = 20;
+    public bool inAir = false;
+    public float groundDetecDist = 1.1f;
 
     [Header("WeaponStats")]
     public GameObject shot;
@@ -43,10 +45,7 @@ public class PlayerControl : MonoBehaviour
     public float xSens = 2;
     public float ySens = 2;
     public float camRotLim = 90;
-
-    [Header("Detection")]
-    public float groundDetecDist = 1.1f;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -132,9 +131,11 @@ public class PlayerControl : MonoBehaviour
 
         temp.z = horizMove * MoveSpeed;
 
-        //Jump for joy
+        //Jump for Joy
         if (Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, -transform.up, groundDetecDist))
-        { temp.y = JumpHeight; }
+        { temp.y = JumpHeight;
+            inAir = true;
+        }
 
         // Use the Force Luke
         myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
@@ -142,8 +143,12 @@ public class PlayerControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // I need a medic bag
-        if (CurrentHealth < MaxHealth && collision.gameObject.tag == "HealPickup")
+        //You're grounded!
+        if (collision.gameObject.tag == "Ground")
+        { inAir = false; }
+
+            // I need a medic bag
+            if (CurrentHealth < MaxHealth && collision.gameObject.tag == "HealPickup")
         {
             CurrentHealth += HealVal;
 
