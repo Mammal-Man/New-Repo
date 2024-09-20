@@ -71,24 +71,16 @@ public class PlayerControl : MonoBehaviour
 
         // FIRE!
         if(fireMode > 1)
-        {
+        {// Automatics
             if (Input.GetMouseButton(0) && canFire && CurrentClip > 0 && weaponID > -1)
             {
                 GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
                 s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
-                Destroy(s, bulletLifespan);
 
-                canFire = false;
-                CurrentClip--;
-                StartCoroutine("cooldownFire");
-            }
-        }
-        else if (fireMode < 1)
-        {
-            if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0 && weaponID > -1)
-            {
-                GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
-                s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
+                if(Physics.Raycast(s.transform.position, s.transform.up, 0.1f))
+                {
+                    Destroy(s);
+                }
                 Destroy(s, bulletLifespan);
 
                 canFire = false;
@@ -97,7 +89,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
         else
-        {
+        {// Semi-Autos
             if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0 && weaponID > -1)
             {
                 GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
@@ -105,10 +97,11 @@ public class PlayerControl : MonoBehaviour
                 Destroy(s, bulletLifespan);
 
                 canFire = false;
+                CurrentClip--;
                 StartCoroutine("cooldownFire");
             }
         }
-
+        
         //Reload
         if(Input.GetKeyDown(KeyCode.R))
         { reloadClip(); }
@@ -129,8 +122,7 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.LeftShift))
             { sprinting = false; }
         }
-
-        if (sprintTogOpt)
+        else
         {
             if (Input.GetKey(KeyCode.LeftShift) && vertMove > 0)
             { sprinting = true; }
@@ -185,16 +177,16 @@ public class PlayerControl : MonoBehaviour
 
             switch(collision.gameObject.name)
             {
-                case "Grenade Launcher":
+                case "Pistol":
                     
                     weaponID = 0;    
                     fireMode = 0;    
-                    fireRate = 1;
-                    CurrentClip = 6;
-                    clipSize = 6;
-                    MaxAmmo = 30;
-                    CurrentAmmo = 30;
-                    reloadAmount = 6;
+                    fireRate = 0.25f;
+                    CurrentClip = 15;
+                    clipSize = 15;
+                    MaxAmmo = 75;
+                    CurrentAmmo = 75;
+                    reloadAmount = 15;
                     bulletLifespan = 1;
                     break;
 
@@ -210,20 +202,7 @@ public class PlayerControl : MonoBehaviour
                     reloadAmount = 30;
                     bulletLifespan = 1;
                     break;
-
-                case "Grappling Hook":
-
-                    weaponID = 2;
-                    fireMode = 1;
-                    fireRate = 0.1f;
-                    CurrentClip = 1;
-                    clipSize = 1;
-                    MaxAmmo = 1;
-                    CurrentAmmo = 1;
-                    reloadAmount = 1;
-                    bulletLifespan = 1;
-                    break;
-
+                    
                 default:
                     break;
             }
