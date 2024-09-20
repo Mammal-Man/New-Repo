@@ -18,7 +18,7 @@ public class PlayerControl : MonoBehaviour
     public int AmmoRefill = 20;
     public bool inAir = false;
     public float groundDetecDist = 1.1f;
-
+    
     [Header("WeaponStats")]
     public GameObject shot;
     public float shotSpeed = 10000;
