@@ -76,11 +76,6 @@ public class PlayerControl : MonoBehaviour
             {
                 GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
                 s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
-
-                if(Physics.Raycast(s.transform.position, s.transform.up, 0.1f))
-                {
-                    Destroy(s);
-                }
                 Destroy(s, bulletLifespan);
 
                 canFire = false;
