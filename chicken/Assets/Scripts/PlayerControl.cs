@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     
     [Header("WeaponStats")]
     public GameObject shot;
+    public GameObject Hook;
     public float shotSpeed = 10000;
     public bool canFire = true;
     public int weaponID = -1;
@@ -82,7 +83,7 @@ public class PlayerControl : MonoBehaviour
                 StartCoroutine("cooldownFire");
             }
         }
-        else
+        else if (fireMode < 1)
         {// Semi-Autos
             if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0 && weaponID > -1)
             {
@@ -92,6 +93,18 @@ public class PlayerControl : MonoBehaviour
 
                 canFire = false;
                 CurrentClip--;
+                StartCoroutine("cooldownFire");
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0) && canFire && weaponID > -1)
+            {
+                GameObject h = Instantiate(Hook, weaponSlot.position, weaponSlot.rotation);
+                h.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
+                Destroy(h, bulletLifespan);
+
+                canFire = false;
                 StartCoroutine("cooldownFire");
             }
         }
@@ -202,7 +215,15 @@ public class PlayerControl : MonoBehaviour
                     reloadAmount = 30;
                     bulletLifespan = 1;
                     break;
-                    
+
+                case "Grappling Hook":
+
+                    weaponID = 2;
+                    fireRate = 1;
+                    fireMode = 1;
+                    bulletLifespan = 1;
+                    break;
+
                 default:
                     break;
             }
