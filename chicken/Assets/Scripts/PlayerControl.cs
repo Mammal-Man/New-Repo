@@ -83,7 +83,7 @@ public class PlayerControl : MonoBehaviour
                 StartCoroutine("cooldownFire");
             }
         }
-        else if (fireMode < 1)
+        else
         {// Semi-Autos
             if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0 && weaponID > -1)
             {
@@ -93,18 +93,6 @@ public class PlayerControl : MonoBehaviour
 
                 canFire = false;
                 CurrentClip--;
-                StartCoroutine("cooldownFire");
-            }
-        }
-        else
-        {
-            if (Input.GetMouseButtonDown(0) && canFire && weaponID > -1)
-            {
-                GameObject h = Instantiate(Hook, weaponSlot.position, weaponSlot.rotation);
-                h.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
-                Destroy(h, bulletLifespan);
-
-                canFire = false;
                 StartCoroutine("cooldownFire");
             }
         }
