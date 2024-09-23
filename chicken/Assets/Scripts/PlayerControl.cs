@@ -21,7 +21,6 @@ public class PlayerControl : MonoBehaviour
     
     [Header("WeaponStats")]
     public GameObject shot;
-    public GameObject Hook;
     public float shotSpeed = 10000;
     public bool canFire = true;
     public int weaponID = -1;
