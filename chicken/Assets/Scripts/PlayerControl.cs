@@ -66,7 +66,7 @@ public class PlayerControl : MonoBehaviour
         camRot.x += Input.GetAxisRaw("Mouse X") * mouseSens;
         camRot.y += Input.GetAxisRaw("Mouse Y") * mouseSens;
 
-        playerCam.transform.localRotation = Quaternion.AngleAxis(camRot.y, Vector3.left);
+        playerCam.transform.localRotation = Quaternion.Euler(-camRot.y, camRot.x, 0);
         transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.up);
 
         // FIRE!
