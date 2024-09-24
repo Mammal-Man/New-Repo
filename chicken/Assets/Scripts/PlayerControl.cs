@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
 {
     Rigidbody myRB;
     Camera playerCam;
-
+    Transform cameraHolder;
     Vector2 camRot;
     public Transform weaponSlot;
 
@@ -51,7 +51,8 @@ public class PlayerControl : MonoBehaviour
     {
         // Initialize components
         myRB = GetComponent<Rigidbody>();
-        playerCam = transform.GetChild(0).GetComponent<Camera>();
+        playerCam = Camera.main;
+        cameraHolder = transform.GetChild(0);
 
         camRot = Vector2.zero;
         Cursor.visible = false;
@@ -102,6 +103,7 @@ public class PlayerControl : MonoBehaviour
 
         //Neck Brace
         camRot.y = Mathf.Clamp(camRot.y, -camRotLim, camRotLim);
+        playerCam.transform.position = cameraHolder.position;
 
         //Movement variables
         Vector3 temp = myRB.velocity;
