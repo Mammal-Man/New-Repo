@@ -171,53 +171,6 @@ public class PlayerControl : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        // Arm Yourself
-        if (collision.gameObject.tag == "Weapon")
-        {
-            collision.gameObject.transform.SetPositionAndRotation(weaponSlot.position, weaponSlot.rotation);
-            collision.gameObject.transform.SetParent(weaponSlot);
-
-            switch(collision.gameObject.name)
-            {
-                case "Pistol":
-                    
-                    weaponID = 0;    
-                    fireMode = 0;    
-                    fireRate = 0.25f;
-                    CurrentClip = 15;
-                    clipSize = 15;
-                    MaxAmmo = 75;
-                    CurrentAmmo = 75;
-                    reloadAmount = 15;
-                    bulletLifespan = 1;
-                    break;
-
-                case "Assault Rifle":
-                    
-                    weaponID = 1;    
-                    fireMode = 2;    
-                    fireRate = 0.1f;
-                    CurrentClip = 30;
-                    clipSize = 30;
-                    MaxAmmo = 150;
-                    CurrentAmmo = 150;
-                    reloadAmount = 30;
-                    bulletLifespan = 1;
-                    break;
-
-                case "Grappling Hook":
-
-                    weaponID = 2;
-                    fireRate = 1;
-                    fireMode = 1;
-                    bulletLifespan = 1;
-                    break;
-
-                default:
-                    break;
-            }
-        }
-        
         // I need more booletts
         if (CurrentAmmo < MaxAmmo && collision.gameObject.tag == "AmmoPickup")
         {
@@ -278,5 +231,54 @@ public class PlayerControl : MonoBehaviour
     {
         yield return new WaitForSeconds(fireRate);
         canFire = true;
+    }
+    private void OnTriggerEnter(Collider collision)
+    {
+        // Arm Yourself
+        if (collision.gameObject.tag == "Weapon")
+        {
+            collision.gameObject.transform.SetPositionAndRotation(weaponSlot.position, weaponSlot.rotation);
+            collision.gameObject.transform.SetParent(weaponSlot);
+
+            switch (collision.gameObject.name)
+            {
+                case "Pistol":
+
+                    weaponID = 0;
+                    fireMode = 0;
+                    fireRate = 0.25f;
+                    CurrentClip = 15;
+                    clipSize = 15;
+                    MaxAmmo = 75;
+                    CurrentAmmo = 75;
+                    reloadAmount = 15;
+                    bulletLifespan = 1;
+                    break;
+
+                case "Assault Rifle":
+
+                    weaponID = 1;
+                    fireMode = 2;
+                    fireRate = 0.1f;
+                    CurrentClip = 30;
+                    clipSize = 30;
+                    MaxAmmo = 150;
+                    CurrentAmmo = 150;
+                    reloadAmount = 30;
+                    bulletLifespan = 1;
+                    break;
+
+                case "Grappling Hook":
+
+                    weaponID = 2;
+                    fireRate = 1;
+                    fireMode = 1;
+                    bulletLifespan = 1;
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }

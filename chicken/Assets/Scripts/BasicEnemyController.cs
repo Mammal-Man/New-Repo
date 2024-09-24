@@ -31,10 +31,11 @@ public class BasicEnemyController : MonoBehaviour
         { Destroy(gameObject); }
 
         //Find him
-        agent.destination = player.transform.position;
+        else
+            agent.destination = player.transform.position;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         //Ive been shot?
         if (collision.gameObject.tag == "Shot")
