@@ -28,7 +28,7 @@ public class BasicEnemyController : MonoBehaviour
     {
         //Kill me
         if (health <= 0)
-            Destroy(gameObject);
+        { Destroy(gameObject); }
 
         //Find him
         agent.destination = player.transform.position;
