@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Basic Enemy
   - Enemy
+  - Enemy Shot
   layers:
   - Default
   - TransparentFX

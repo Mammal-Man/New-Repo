@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
     Rigidbody myRB;
     Camera playerCam;
     Transform cameraHolder;
+    public GameObject playerSpawn;
     Vector2 camRot;
     public Transform weaponSlot;
 
@@ -61,7 +62,16 @@ public class PlayerControl : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
+    {
+
+        //Respawn
+        if (CurrentHealth <= 0)
+        {
+            transform.position = playerSpawn.transform.position;
+            CurrentHealth = 100;
+        }
+
+
         //Do the Hokey Pokey and turn yourself around 
         camRot.x += Input.GetAxisRaw("Mouse X") * mouseSens;
         camRot.y += Input.GetAxisRaw("Mouse Y") * mouseSens;
@@ -232,8 +242,16 @@ public class PlayerControl : MonoBehaviour
         yield return new WaitForSeconds(fireRate);
         canFire = true;
     }
+
     private void OnTriggerEnter(Collider collision)
     {
+        //Ive been shot?
+        if (collision.gameObject.tag == "Enemy Shot")
+        {
+            Destroy(collision.gameObject);
+            CurrentHealth--;
+        }
+        
         // Arm Yourself
         if (collision.gameObject.tag == "Weapon")
         {
