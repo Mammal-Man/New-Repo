@@ -63,7 +63,6 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //Respawn
         if (CurrentHealth <= 0)
         {
@@ -159,8 +158,12 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         { inAir = false; }
 
-            // I need a medic bag
-            if (CurrentHealth < MaxHealth && collision.gameObject.tag == "HealPickup")
+        //I'm Hit!
+        if (collision.gameObject.tag == "Basic Enemy")
+        { CurrentHealth -= 20; }
+
+        // I need a medic bag
+        if (CurrentHealth < MaxHealth && collision.gameObject.tag == "HealPickup")
         {
             CurrentHealth += HealVal;
 
