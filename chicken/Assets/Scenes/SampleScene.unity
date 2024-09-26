@@ -768,7 +768,7 @@ GameObject:
   - component: {fileID: 187081588}
   - component: {fileID: 187081587}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: circle
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
