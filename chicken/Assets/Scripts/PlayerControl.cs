@@ -247,14 +247,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider collision)
-    {
-        //Ive been shot?
-        if (collision.gameObject.tag == "Enemy Shot")
-        {
-            Destroy(collision.gameObject);
-            CurrentHealth--;
-        }
-        
+    {   
         // Arm Yourself
         if (collision.gameObject.tag == "Weapon")
         {

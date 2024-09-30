@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2905076373266454229}
   - component: {fileID: 2905076373266454230}
   - component: {fileID: 2905076373266454231}
-  - component: {fileID: 2905076373266454312}
+  - component: {fileID: 1604695151748077250}
   m_Layer: 0
   m_Name: Shot
   m_TagString: Shot
@@ -100,7 +100,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -108,7 +108,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2905076373266454312
+--- !u!54 &1604695151748077250
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -28,13 +28,15 @@ public class BasicEnemyController : MonoBehaviour
         //Kill me
         if (health <= 0)
         { Destroy(gameObject); }
-
-        //Find him
-        else
-            agent.destination = player.transform.position;
     }
 
     private void OnTriggerEnter(Collider collision)
+    {
+        //Find him
+        { agent.destination = player.transform.position; }
+    }
+
+    private void OnCollisionEnter(Collision collision)
     {
         //Ive been shot?
         if (collision.gameObject.tag == "Shot")

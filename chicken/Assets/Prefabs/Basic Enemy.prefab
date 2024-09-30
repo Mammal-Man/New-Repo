@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8811583687408190210}
   - component: {fileID: 8811583687408190213}
   - component: {fileID: 8811583687408190212}
+  - component: {fileID: 1290637968578116116}
   m_Layer: 0
   m_Name: Basic Enemy
   m_TagString: Basic Enemy
@@ -125,13 +126,8 @@ MonoBehaviour:
   agent: {fileID: 0}
   health: 3
   maxHealth: 3
-  damageGiven: 5
   damageRecieved: 1
   pushBackForce: 10000
-  shootingRange: 10
-  shotSpeed: 10000
-  bulletLifespan: 1
-  shot: {fileID: 2905076373266454313, guid: 97996e0ddbf934a46b480bdbe99964f2, type: 3}
 --- !u!195 &8811583687408190212
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -154,3 +150,24 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &1290637968578116116
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811583687408190215}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
