@@ -65,93 +65,96 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Respawn
-        if (CurrentHealth <= 0)
-        {
-            transform.position = playerSpawn.transform.position;
-            CurrentHealth = 100;
-        }
-
-
-        //Do the Hokey Pokey and turn yourself around 
-        camRot.x += Input.GetAxisRaw("Mouse X") * mouseSens * Time.timeScale;
-        camRot.y += Input.GetAxisRaw("Mouse Y") * mouseSens * Time.timeScale;
-
-        playerCam.transform.rotation = Quaternion.Euler(-camRot.y, camRot.x, 0);
-        transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.up);
-
-        // FIRE!
-        if(fireMode > 1)
-        {// Automatics
-            if (Input.GetMouseButton(0) && canFire && CurrentClip > 0 && weaponID > -1)
+        if(!GM.isPaused)
+        { //Respawn
+            if (CurrentHealth <= 0)
             {
-                GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
-                s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
-                Destroy(s, bulletLifespan);
-
-                canFire = false;
-                CurrentClip--;
-                StartCoroutine("cooldownFire");
+                transform.position = playerSpawn.transform.position;
+                CurrentHealth = 100;
             }
-        }
-        else
-        {// Semi-Autos
-            if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0 && weaponID > -1)
+
+
+            //Do the Hokey Pokey and turn yourself around 
+            camRot.x += Input.GetAxisRaw("Mouse X") * mouseSens * Time.timeScale;
+            camRot.y += Input.GetAxisRaw("Mouse Y") * mouseSens * Time.timeScale;
+
+            playerCam.transform.rotation = Quaternion.Euler(-camRot.y, camRot.x, 0);
+            transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.up);
+
+            // FIRE!
+            if (fireMode > 1)
+            {// Automatics
+                if (Input.GetMouseButton(0) && canFire && CurrentClip > 0 && weaponID > -1)
+                {
+                    GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
+                    s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
+                    Destroy(s, bulletLifespan);
+
+                    canFire = false;
+                    CurrentClip--;
+                    StartCoroutine("cooldownFire");
+                }
+            }
+            else
+            {// Semi-Autos
+                if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0 && weaponID > -1)
+                {
+                    GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
+                    s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
+                    Destroy(s, bulletLifespan);
+
+                    canFire = false;
+                    CurrentClip--;
+                    StartCoroutine("cooldownFire");
+                }
+            }
+
+            //Reload
+            if (Input.GetKeyDown(KeyCode.R))
+            { reloadClip(); }
+
+            //Neck Brace
+            camRot.y = Mathf.Clamp(camRot.y, -camRotLim, camRotLim);
+            playerCam.transform.position = cameraHolder.position;
+
+            //Movement variables
+            Vector3 temp = myRB.velocity;
+            float vertMove = Input.GetAxisRaw("Vertical");
+            float horizMove = Input.GetAxisRaw("Horizontal");
+
+            //Run for your life
+            if (!sprintTogOpt)
             {
-                GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
-                s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
-                Destroy(s, bulletLifespan);
-
-                canFire = false;
-                CurrentClip--;
-                StartCoroutine("cooldownFire");
+                if (Input.GetKey(KeyCode.LeftShift))
+                { sprinting = true; }
+                if (Input.GetKeyUp(KeyCode.LeftShift))
+                { sprinting = false; }
             }
+            else
+            {
+                if (Input.GetKey(KeyCode.LeftShift) && vertMove > 0)
+                { sprinting = true; }
+                if (vertMove <= 0)
+                { sprinting = false; }
+            }
+
+            if (sprinting)
+            { temp.x = vertMove * MoveSpeed * sprintMulti; }
+            else
+            { temp.x = vertMove * MoveSpeed; }
+
+            temp.z = horizMove * MoveSpeed;
+
+            //Jump for Joy
+            if (Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, -transform.up, groundDetecDist))
+            {
+                temp.y = JumpHeight;
+                inAir = true;
+            }
+
+            // Use the Force Luke
+            myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
         }
-        
-        //Reload
-        if(Input.GetKeyDown(KeyCode.R))
-        { reloadClip(); }
-
-        //Neck Brace
-        camRot.y = Mathf.Clamp(camRot.y, -camRotLim, camRotLim);
-        playerCam.transform.position = cameraHolder.position;
-
-        //Movement variables
-        Vector3 temp = myRB.velocity;
-        float vertMove = Input.GetAxisRaw("Vertical");
-        float horizMove = Input.GetAxisRaw("Horizontal");
-
-        //Run for your life
-        if (!sprintTogOpt)
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            { sprinting = true; }
-            if (Input.GetKeyUp(KeyCode.LeftShift))
-            { sprinting = false; }
-        }
-        else
-        {
-            if (Input.GetKey(KeyCode.LeftShift) && vertMove > 0)
-            { sprinting = true; }
-            if (vertMove <= 0)
-            { sprinting = false; }
-        }
-
-        if (sprinting)
-        { temp.x = vertMove * MoveSpeed * sprintMulti; }
-        else
-        { temp.x = vertMove * MoveSpeed; }
-
-        temp.z = horizMove * MoveSpeed;
-
-        //Jump for Joy
-        if (Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, -transform.up, groundDetecDist))
-        { temp.y = JumpHeight;
-            inAir = true;
-        }
-
-        // Use the Force Luke
-        myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
     }
 
     private void OnCollisionEnter(Collision collision)
