@@ -10,19 +10,83 @@ public class GameManager : MonoBehaviour
     public bool isPaused = false;
 
     public GameObject pauseMenu;
-    public PlayerControl PlayerController;
+    public PlayerControl player;
 
     public Image healthBar;
+    public TextMeshProUGUI clipCounter;
+    public TextMeshProUGUI reserveCounter;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Player").GetComponent<PlayerControl>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //healthy player
+        healthBar.fillAmount = Mathf.Clamp((float)player.CurrentHealth / (float)player.MaxHealth, 0, 1);
+
+        //He's got a weapon
+        if (player.weaponID < 0)
+        {
+            clipCounter.gameObject.SetActive(false);
+            reserveCounter.gameObject.SetActive(false);
+        }
+        else
+        {
+            clipCounter.gameObject.SetActive(true);
+            reserveCounter.gameObject.SetActive(true);
+
+            clipCounter.text = "Clip: " + player.CurrentClip + "/" + player.clipSize;
+            reserveCounter.text = "Reserves: " + player.CurrentAmmo;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(!isPaused)
+            {
+                pauseMenu.SetActive(true);
+
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+
+                Time.timeScale = 0;
+
+                isPaused = true;
+            }
+
+            else
+            { Resume(); }
+        }
+    }
+
+    //REsume
+    public void Resume()
+    {
+        pauseMenu.SetActive(false);
+
+        Time.timeScale = 1;
+
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+
+        isPaused = false;
+    }
+
+    public void quitGame()
+    {
+        Application.Quit();
+    }
+
+    public void LoadLevel(int sceneID)
+    {
+        SceneManager.LoadScene(sceneID);
+    }
+
+    public void restartLevel()
+    {
+        LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
 }
