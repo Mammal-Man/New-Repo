@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    public GameManager GM;
     Rigidbody myRB;
     Camera playerCam;
     Transform cameraHolder;
@@ -54,6 +55,7 @@ public class PlayerControl : MonoBehaviour
         myRB = GetComponent<Rigidbody>();
         playerCam = Camera.main;
         cameraHolder = transform.GetChild(0);
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         camRot = Vector2.zero;
         Cursor.visible = false;
@@ -72,8 +74,8 @@ public class PlayerControl : MonoBehaviour
 
 
         //Do the Hokey Pokey and turn yourself around 
-        camRot.x += Input.GetAxisRaw("Mouse X") * mouseSens;
-        camRot.y += Input.GetAxisRaw("Mouse Y") * mouseSens;
+        camRot.x += Input.GetAxisRaw("Mouse X") * mouseSens * Time.timeScale;
+        camRot.y += Input.GetAxisRaw("Mouse Y") * mouseSens * Time.timeScale;
 
         playerCam.transform.rotation = Quaternion.Euler(-camRot.y, camRot.x, 0);
         transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.up);
