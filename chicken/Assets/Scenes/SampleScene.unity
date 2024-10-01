@@ -2697,6 +2697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1104492289}
+  - component: {fileID: 1104492290}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2719,6 +2720,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1104492290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104492288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5297263bce4420d45a035c946fc3bb84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPaused: 0
+  pauseMenu: {fileID: 1765142057}
+  player: {fileID: 219949948}
+  healthBar: {fileID: 743259797}
+  clipCounter: {fileID: 936689452}
+  reserveCounter: {fileID: 1016284913}
 --- !u!1 &1113562605
 GameObject:
   m_ObjectHideFlags: 0
