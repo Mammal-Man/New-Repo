@@ -14,14 +14,14 @@ public class PlayerControl : MonoBehaviour
     public Transform weaponSlot;
 
     [Header("Player Stats")]
-    public int MaxHealth = 100;
-    public int CurrentHealth = 100;
-    public int HealVal = 100;
+    public int MaxHealth = 9;
+    public int CurrentHealth = 9;
+    public int HealVal = 9;
     public int AmmoRefill = 20;
     public bool inAir = false;
     public float groundDetecDist = 1.1f;
     
-    [Header("WeaponStats")]
+    [Header("Weapon Stats")]
     public GameObject shot;
     public float shotSpeed = 10000;
     public bool canFire = true;
@@ -165,7 +165,7 @@ public class PlayerControl : MonoBehaviour
 
         //I'm Hit!
         if (collision.gameObject.tag == "Basic Enemy")
-        { CurrentHealth -= 20; }
+        { CurrentHealth --; }
 
         // I need a medic bag
         if (CurrentHealth < MaxHealth && collision.gameObject.tag == "HealPickup")
