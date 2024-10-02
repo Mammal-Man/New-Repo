@@ -7,7 +7,6 @@ public class BasicEnemyController : MonoBehaviour
 {
     
     public PlayerControl player;
-    public GameObject shot;
     public NavMeshAgent agent;
     public GameObject Corpse;
 
@@ -45,7 +44,7 @@ public class BasicEnemyController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Shot")
-        { agent.destination = shot.transform.position; }
+        { agent.destination = player.transform.position; }
     }
 
     private void OnCollisionEnter(Collision other)
