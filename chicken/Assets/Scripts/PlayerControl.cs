@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour
     [Header("Player Stats")]
     public int MaxHealth = 100;
     public int CurrentHealth = 100;
-    public int HealVal = 20;
+    public int HealVal = 100;
     public int AmmoRefill = 20;
     public bool inAir = false;
     public float groundDetecDist = 1.1f;

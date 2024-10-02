@@ -35,21 +35,25 @@ public class BasicEnemyController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider other)
     {
         //Find him
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         { agent.destination = player.transform.position; }
-        else if (collision.gameObject.tag == "Shot")
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Shot")
         { agent.destination = shot.transform.position; }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
         //Ive been shot?
-        if (collision.gameObject.tag == "Shot")
+        if (other.gameObject.tag == "Shot")
         {
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
             health--;
         }
     }
