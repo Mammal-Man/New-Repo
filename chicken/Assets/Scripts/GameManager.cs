@@ -25,44 +25,49 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //healthy player
-        healthBar.fillAmount = Mathf.Clamp((float)player.CurrentHealth / (float)player.MaxHealth, 0, 1);
-
-        //He's got a weapon
-        if (player.weaponID < 0)
+        //Main menu
+        if (SceneManager.GetActiveScene().buildIndex > 0)
         {
-            clipCounter.gameObject.SetActive(false);
-            reserveCounter.gameObject.SetActive(false);
-        }
-        else
-        {
-            clipCounter.gameObject.SetActive(true);
-            reserveCounter.gameObject.SetActive(true);
+            //healthy player
+            healthBar.fillAmount = Mathf.Clamp((float)player.CurrentHealth / (float)player.MaxHealth, 0, 1);
 
-            clipCounter.text = "Clip: " + player.CurrentClip + "/" + player.clipSize;
-            reserveCounter.text = "Ammo: " + player.CurrentAmmo;
-        }
-
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            if(!isPaused)
+            //He's got a weapon
+            if (player.weaponID < 0)
             {
-                pauseMenu.SetActive(true);
+                clipCounter.gameObject.SetActive(false);
+                reserveCounter.gameObject.SetActive(false);
+            }
+            else
+            {
+                clipCounter.gameObject.SetActive(true);
+                reserveCounter.gameObject.SetActive(true);
 
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-
-                Time.timeScale = 0;
-
-                isPaused = true;
+                clipCounter.text = "Clip: " + player.CurrentClip + "/" + player.clipSize;
+                reserveCounter.text = "Ammo: " + player.CurrentAmmo;
             }
 
-            else
-            { Resume(); }
+            //Pause
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!isPaused)
+                {
+                    pauseMenu.SetActive(true);
+
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+
+                    Time.timeScale = 0;
+
+                    isPaused = true;
+                }
+
+                else
+                { Resume(); }
+            }
         }
     }
 
-    //REsume
+    //Resume
     public void Resume()
     {
         pauseMenu.SetActive(false);
@@ -75,6 +80,7 @@ public class GameManager : MonoBehaviour
         isPaused = false;
     }
 
+    //Quit while you're ahead
     public void quitGame()
     {
         Application.Quit();
