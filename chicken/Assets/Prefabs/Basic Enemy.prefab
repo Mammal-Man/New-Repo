@@ -122,7 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20449ef5a16bd9e4e9aa9ff25ca866f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 6882592264260432121, guid: e47dbbe5998878a499197dd151645fee, type: 3}
+  shot: {fileID: 2905076373266454313, guid: 3b251d8294ad8d14685f9cb02def4f46, type: 3}
   agent: {fileID: 0}
   Corpse: {fileID: 5296745133686407486, guid: c73ca2d1331465e44b25b3967870b48c, type: 3}
   health: 3
