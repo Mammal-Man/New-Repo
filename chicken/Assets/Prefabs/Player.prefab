@@ -183,9 +183,9 @@ MonoBehaviour:
   GM: {fileID: 0}
   playerSpawn: {fileID: 0}
   weaponSlot: {fileID: 0}
-  MaxHealth: 100
-  CurrentHealth: 100
-  HealVal: 20
+  MaxHealth: 9
+  CurrentHealth: 9
+  HealVal: 1
   AmmoRefill: 20
   inAir: 0
   groundDetecDist: 1.1

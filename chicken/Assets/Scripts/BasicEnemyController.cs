@@ -9,6 +9,7 @@ public class BasicEnemyController : MonoBehaviour
     public PlayerControl player;
     public NavMeshAgent agent;
     public GameObject Corpse;
+    public float corpseLifespan = 30;
 
     [Header("Enemy Stats")]
     public int health = 3;
@@ -31,6 +32,7 @@ public class BasicEnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             GameObject corpse = Instantiate(Corpse, transform.position, transform.rotation);
+            Destroy(corpse, corpseLifespan);
         }
     }
 
