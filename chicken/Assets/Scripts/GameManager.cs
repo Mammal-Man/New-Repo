@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
             reserveCounter.gameObject.SetActive(true);
 
             clipCounter.text = "Clip: " + player.CurrentClip + "/" + player.clipSize;
-            reserveCounter.text = "Reserves: " + player.CurrentAmmo;
+            reserveCounter.text = "Ammo: " + player.CurrentAmmo;
         }
 
         if(Input.GetKeyDown(KeyCode.Escape))
