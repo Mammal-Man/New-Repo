@@ -8,6 +8,7 @@ public class BasicEnemyController : MonoBehaviour
     
     public PlayerControl player;
     public NavMeshAgent agent;
+    public GameObject Corpse;
 
     [Header("Enemy Stats")]
     public int health = 3;
@@ -27,7 +28,10 @@ public class BasicEnemyController : MonoBehaviour
     {
         //Kill me
         if (health <= 0)
-        { Destroy(gameObject); }
+        {
+            Destroy(gameObject);
+            GameObject corpse = Instantiate(Corpse, transform.position, transform.rotation);
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
