@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<PlayerControl>();
+        if (SceneManager.GetActiveScene().buildIndex > 0)
+        { player = GameObject.Find("Player").GetComponent<PlayerControl>(); }
     }
 
     // Update is called once per frame
