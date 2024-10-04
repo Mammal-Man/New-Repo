@@ -83,7 +83,8 @@ public class PlayerControl : MonoBehaviour
 
             // FIRE!
             if (fireMode > 1)
-            {// Automatics
+            {
+                // Automatics
                 if (Input.GetMouseButton(0) && canFire && CurrentClip > 0 && weaponID > -1)
                 {
                     GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
@@ -96,7 +97,8 @@ public class PlayerControl : MonoBehaviour
                 }
             }
             else
-            {// Semi-Autos
+            {
+                // Semi-Autos
                 if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0 && weaponID > -1)
                 {
                     GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
