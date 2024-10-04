@@ -125,13 +125,12 @@ MonoBehaviour:
   player: {fileID: 6882592264260432121, guid: e47dbbe5998878a499197dd151645fee, type: 3}
   agent: {fileID: 0}
   Corpse: {fileID: 5296745133686407486, guid: c73ca2d1331465e44b25b3967870b48c, type: 3}
-  healDrop: {fileID: 1040130769315337729, guid: ef70068dda0669d43a2ac10a3eac8087, type: 3}
   corpseLifespan: 30
   health: 3
   maxHealth: 3
   damageRecieved: 1
   pushBackForce: 10000
-  corpseForce: 10
+  corpseForce: 100
 --- !u!195 &5296745133686407485
 NavMeshAgent:
   m_ObjectHideFlags: 0
