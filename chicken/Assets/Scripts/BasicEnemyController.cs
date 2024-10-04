@@ -16,7 +16,7 @@ public class BasicEnemyController : MonoBehaviour
     public int maxHealth = 3;
     public int damageRecieved = 1;
     public float pushBackForce = 10000;
-    public float corpseForce = 10;
+    public float corpseForce = 100;
 
     // Start is called before the first frame update
     void Start()
