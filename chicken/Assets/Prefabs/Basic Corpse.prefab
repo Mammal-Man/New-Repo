@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5296745133686407483}
   - component: {fileID: -116987555878453160}
   m_Layer: 0
-  m_Name: Basic Enemy Corpse
+  m_Name: Basic Corpse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
