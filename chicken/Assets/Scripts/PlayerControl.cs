@@ -287,14 +287,6 @@ public class PlayerControl : MonoBehaviour
                     bulletLifespan = 1;
                     break;
 
-                case "Grappling Hook":
-
-                    weaponID = 2;
-                    fireRate = 1;
-                    fireMode = 1;
-                    bulletLifespan = 1;
-                    break;
-
                 default:
                     break;
             }
