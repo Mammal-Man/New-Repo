@@ -32,6 +32,7 @@ public class BasicEnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             GameObject corpse = Instantiate(Corpse, transform.position, transform.rotation);
+            corpse.GetComponent<Rigidbody>().AddForce(-transform.forward);
             Destroy(corpse, corpseLifespan);
         }
     }

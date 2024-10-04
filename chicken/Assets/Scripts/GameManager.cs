@@ -87,12 +87,14 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    //pull up
     public void LoadLevel(int sceneID)
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(sceneID);
     }
 
+    //Try that again
     public void restartLevel()
     {
         Time.timeScale = 1;
