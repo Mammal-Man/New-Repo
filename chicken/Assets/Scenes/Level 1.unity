@@ -5263,6 +5263,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 219949948}
     - target: {fileID: 2249758613172638646, guid: 3c6578cf30dca3a4bb9070afdd0f9ae1, type: 3}
+      propertyPath: redDoot
+      value: 
+      objectReference: {fileID: 2127557120}
+    - target: {fileID: 2249758613172638646, guid: 3c6578cf30dca3a4bb9070afdd0f9ae1, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 743259797}
