@@ -9,7 +9,6 @@ public class BasicEnemyController : MonoBehaviour
     public PlayerControl player;
     public NavMeshAgent agent;
     public GameObject Corpse;
-    public GameObject healDrop;
     public float corpseLifespan = 30;
 
     [Header("Enemy Stats")]
@@ -34,7 +33,6 @@ public class BasicEnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             GameObject corpse = Instantiate(Corpse, transform.position, transform.rotation);
-            GameObject heal = Instantiate(healDrop, transform.position, transform.rotation);
             corpse.GetComponent<Rigidbody>().AddForce(-transform.forward * corpseForce);
             Destroy(corpse, corpseLifespan);
         }
