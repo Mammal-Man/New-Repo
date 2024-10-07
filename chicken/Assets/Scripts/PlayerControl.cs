@@ -173,10 +173,6 @@ public class PlayerControl : MonoBehaviour
         if (CurrentHealth < MaxHealth && collision.gameObject.tag == "HealPickup")
         {
             CurrentHealth += HealVal;
-
-            if (CurrentHealth > MaxHealth)
-            { CurrentHealth = MaxHealth; }
-
             Destroy(collision.gameObject);
         }
 
