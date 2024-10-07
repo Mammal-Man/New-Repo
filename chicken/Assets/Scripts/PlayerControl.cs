@@ -12,6 +12,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject playerSpawn;
     Vector2 camRot;
     public Transform weaponSlot;
+    public GameObject pistol;
+    public GameObject assaultRifle;
 
     [Header("Player Stats")]
     public int MaxHealth = 9;
@@ -254,6 +256,7 @@ public class PlayerControl : MonoBehaviour
                     CurrentAmmo = 75;
                     reloadAmount = 15;
                     bulletLifespan = 1;
+                    pistol.GetComponent<CapsuleCollider>().enabled = false;
                     break;
 
                 case "Assault Rifle":
@@ -267,6 +270,7 @@ public class PlayerControl : MonoBehaviour
                     CurrentAmmo = 150;
                     reloadAmount = 30;
                     bulletLifespan = 1;
+                    assaultRifle.GetComponent<CapsuleCollider>().enabled = false;
                     break;
 
                 default:

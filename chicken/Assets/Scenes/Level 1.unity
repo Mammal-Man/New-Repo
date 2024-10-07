@@ -5188,6 +5188,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6882592264260432121, guid: e47dbbe5998878a499197dd151645fee, type: 3}
+      propertyPath: pistol
+      value: 
+      objectReference: {fileID: 1305890818}
+    - target: {fileID: 6882592264260432121, guid: e47dbbe5998878a499197dd151645fee, type: 3}
       propertyPath: weaponSlot
       value: 
       objectReference: {fileID: 1376669502}
