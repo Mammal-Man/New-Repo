@@ -191,10 +191,6 @@ public class PlayerControl : MonoBehaviour
         if (CurrentAmmo < MaxAmmo && collision.gameObject.tag == "AmmoPickup")
         {
             CurrentAmmo += reloadAmount;
-
-            if (CurrentAmmo > MaxAmmo)
-            { CurrentAmmo = MaxAmmo; }
-
             Destroy(collision.gameObject);
         }
 
