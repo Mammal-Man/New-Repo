@@ -87,7 +87,7 @@ public class PlayerControl : MonoBehaviour
                 // Automatics
                 if (Input.GetMouseButton(0) && canFire && CurrentClip > 0 && weaponID > -1)
                 {
-                    GameObject s = Instantiate(shot, cameraHolder.position, cameraHolder.rotation);
+                    GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
                     s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
                     Destroy(s, bulletLifespan);
 
@@ -101,7 +101,7 @@ public class PlayerControl : MonoBehaviour
                 // Semi-Autos
                 if (Input.GetMouseButtonDown(0) && canFire && CurrentClip > 0 && weaponID > -1)
                 {
-                    GameObject s = Instantiate(shot, cameraHolder.position, cameraHolder.rotation);
+                    GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
                     s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
                     Destroy(s, bulletLifespan);
 
