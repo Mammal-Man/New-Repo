@@ -1062,6 +1062,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5296745133686407484, guid: 745aa6c54804abc49a1e7ae1420a2b98, type: 3}
+      propertyPath: Corpse
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: 4481575eb86ada44293f4c61a0349a9b, type: 3}
+    - target: {fileID: 5296745133686407484, guid: 745aa6c54804abc49a1e7ae1420a2b98, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 219949948}

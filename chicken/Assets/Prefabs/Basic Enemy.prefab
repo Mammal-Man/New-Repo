@@ -131,6 +131,7 @@ MonoBehaviour:
   damageRecieved: 1
   pushBackForce: 10000
   corpseForce: 100
+  hits: 0
 --- !u!195 &5296745133686407485
 NavMeshAgent:
   m_ObjectHideFlags: 0
