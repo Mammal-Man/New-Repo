@@ -17,7 +17,6 @@ public class BasicEnemyController : MonoBehaviour
     public int damageRecieved = 1;
     public float pushBackForce = 10000;
     public float corpseForce = 100;
-    public int hits = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +64,6 @@ public class BasicEnemyController : MonoBehaviour
         {
             Destroy(other.gameObject);
             health--;
-            hits++;
         }
     }
 }
