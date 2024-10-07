@@ -175,14 +175,7 @@ public class PlayerControl : MonoBehaviour
             CurrentHealth += HealVal;
             Destroy(collision.gameObject);
         }
-
-        //Ammo refill
-        if (CurrentAmmo < MaxAmmo && collision.gameObject.tag == "AmmoPickup")
-        {
-            CurrentAmmo += AmmoRefill;
-            Destroy(collision.gameObject);
-        }
-
+        
         // I need more booletts
         if (CurrentAmmo < MaxAmmo && collision.gameObject.tag == "AmmoPickup")
         {
