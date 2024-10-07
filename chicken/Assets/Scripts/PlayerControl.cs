@@ -23,7 +23,7 @@ public class PlayerControl : MonoBehaviour
     
     [Header("Weapon Stats")]
     public GameObject shot;
-    public float shotSpeed = 10000;
+    public float shotSpeed = 100;
     public bool canFire = true;
     public int weaponID = -1;
     public float fireRate = 0;
@@ -87,7 +87,7 @@ public class PlayerControl : MonoBehaviour
                 // Automatics
                 if (Input.GetMouseButton(0) && canFire && CurrentClip > 0 && weaponID > -1)
                 {
-                    GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
+                    GameObject s = Instantiate(shot, cameraHolder.position, cameraHolder.rotation);
                     s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
                     Destroy(s, bulletLifespan);
 
