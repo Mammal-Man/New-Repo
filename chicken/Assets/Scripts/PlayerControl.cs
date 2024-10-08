@@ -193,7 +193,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    // Wibbly wobbly timey wimey
+    // Gimme a second
     private void cooldown(bool condition, float timeLim)
     {
         float timer = 0;
