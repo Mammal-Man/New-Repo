@@ -88,7 +88,9 @@ public class PlayerControl : MonoBehaviour
                 gun = weaponSlot.GetChild(0);
                 gun.GetComponent<CapsuleCollider>().enabled = true;
                 gun.transform.SetParent(null);
+                weaponID = -1;
                 StartCoroutine("cooldownPickup");
+
             }
 
             //Do the Hokey Pokey and turn yourself around 
@@ -189,6 +191,51 @@ public class PlayerControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Arm Yourself
+        if (collision.gameObject.tag == "Weapon" && !holdingWeapon)
+        {
+            collision.gameObject.transform.SetPositionAndRotation(weaponSlot.position, weaponSlot.rotation);
+            collision.gameObject.transform.SetParent(weaponSlot);
+
+            switch (collision.gameObject.name)
+            {
+                case "Pistol":
+
+                    weaponID = 0;
+                    fireMode = 0;
+                    fireRate = 0.25f;
+                    CurrentClip = 15;
+                    clipSize = 15;
+                    MaxAmmo = 75;
+                    CurrentAmmo = 75;
+                    reloadAmount = 15;
+                    bulletLifespan = 1;
+                    recoilAmnt = 2;
+                    pistol.GetComponent<CapsuleCollider>().enabled = false;
+                    holdingWeapon = true;
+                    break;
+
+                case "Assault Rifle":
+
+                    weaponID = 1;
+                    fireMode = 2;
+                    fireRate = 0.1f;
+                    CurrentClip = 30;
+                    clipSize = 30;
+                    MaxAmmo = 150;
+                    CurrentAmmo = 150;
+                    reloadAmount = 30;
+                    bulletLifespan = 1;
+                    recoilAmnt = 1;
+                    assaultRifle.GetComponent<CapsuleCollider>().enabled = false;
+                    holdingWeapon = true;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        
         //You're grounded!
         if (collision.gameObject.tag == "Ground")
         { inAir = false; }
@@ -260,53 +307,5 @@ public class PlayerControl : MonoBehaviour
     {
         yield return new WaitForSeconds(pickupCooldown);
         holdingWeapon = false;
-    }
-
-    private void OnTriggerEnter(Collider collision)
-    {   
-        // Arm Yourself
-        if (collision.gameObject.tag == "Weapon" && !holdingWeapon)
-        {
-            collision.gameObject.transform.SetPositionAndRotation(weaponSlot.position, weaponSlot.rotation);
-            collision.gameObject.transform.SetParent(weaponSlot);
-
-            switch (collision.gameObject.name)
-            {
-                case "Pistol":
-
-                    weaponID = 0;
-                    fireMode = 0;
-                    fireRate = 0.25f;
-                    CurrentClip = 15;
-                    clipSize = 15;
-                    MaxAmmo = 75;
-                    CurrentAmmo = 75;
-                    reloadAmount = 15;
-                    bulletLifespan = 1;
-                    recoilAmnt = 2;
-                    pistol.GetComponent<CapsuleCollider>().enabled = false;
-                    holdingWeapon = true;
-                    break;
-
-                case "Assault Rifle":
-
-                    weaponID = 1;
-                    fireMode = 2;
-                    fireRate = 0.1f;
-                    CurrentClip = 30;
-                    clipSize = 30;
-                    MaxAmmo = 150;
-                    CurrentAmmo = 150;
-                    reloadAmount = 30;
-                    bulletLifespan = 1;
-                    recoilAmnt = 1;
-                    assaultRifle.GetComponent<CapsuleCollider>().enabled = false;
-                    holdingWeapon = true;
-                    break;
-
-                default:
-                    break;
-            }
-        }
     }
 }
