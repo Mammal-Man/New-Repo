@@ -38,6 +38,9 @@ public class PlayerControl : MonoBehaviour
     public float clipSize = 0;
     public float CurrentClip = 0;
     public float bulletLifespan = 0;
+    public float recoil = 0;
+    public float recoilAmnt = 0;
+    public bool recoilApplied = false;
 
     [Header("Movement Settings")]
     public float MoveSpeed = 10;
@@ -94,6 +97,8 @@ public class PlayerControl : MonoBehaviour
                     GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
                     s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
                     Destroy(s, bulletLifespan);
+                    recoil = recoilAmnt;
+                    recoilApplied = true;
 
                     canFire = false;
                     CurrentClip--;
@@ -108,6 +113,8 @@ public class PlayerControl : MonoBehaviour
                     GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
                     s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
                     Destroy(s, bulletLifespan);
+                    recoil = recoilAmnt;
+                    recoilApplied = true;
 
                     canFire = false;
                     CurrentClip--;
@@ -120,8 +127,14 @@ public class PlayerControl : MonoBehaviour
             { reloadClip(); }
 
             //Neck Brace
-            camRot.y = Mathf.Clamp(camRot.y, -camRotLim, camRotLim);
+            camRot.y = Mathf.Clamp(camRot.y + recoil, -camRotLim, camRotLim);
             playerCam.transform.position = cameraHolder.position;
+
+            if(recoilApplied)
+            {
+                recoil = 0;
+                recoilApplied = false;
+            }
 
             //Movement variables
             Vector3 temp = myRB.velocity;
@@ -253,6 +266,7 @@ public class PlayerControl : MonoBehaviour
                     CurrentAmmo = 75;
                     reloadAmount = 15;
                     bulletLifespan = 1;
+                    recoilAmnt = 1;
                     pistol.GetComponent<CapsuleCollider>().enabled = false;
                     holdingWeapon = true;
                     break;
@@ -268,6 +282,7 @@ public class PlayerControl : MonoBehaviour
                     CurrentAmmo = 150;
                     reloadAmount = 30;
                     bulletLifespan = 1;
+                    recoilAmnt = 0.5f;
                     assaultRifle.GetComponent<CapsuleCollider>().enabled = false;
                     holdingWeapon = true;
                     break;
