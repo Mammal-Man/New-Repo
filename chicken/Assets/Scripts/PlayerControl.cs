@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject playerSpawn;
     Vector2 camRot;
     public Transform weaponSlot;
+    public Transform gun;
     public GameObject pistol;
     public GameObject assaultRifle;
     public bool camFirstPerson = true;
@@ -24,6 +25,7 @@ public class PlayerControl : MonoBehaviour
     public bool inAir = false;
     public float groundDetecDist = 1.1f;
     public bool holdingWeapon = false;
+    public float pickupCooldown = 0.1f;
     
     [Header("Weapon Stats")]
     public GameObject shot;
@@ -80,6 +82,14 @@ public class PlayerControl : MonoBehaviour
                 CurrentHealth = 100;
             }
 
+            //Drop your weapon!
+            if(holdingWeapon && Input.GetKeyDown(KeyCode.Q))
+            {
+                gun = weaponSlot.GetChild(0);
+                gun.GetComponent<CapsuleCollider>().enabled = true;
+                gun.transform.SetParent(null);
+                StartCoroutine("cooldownPickup");
+            }
 
             //Do the Hokey Pokey and turn yourself around 
             camRot.x += Input.GetAxisRaw("Mouse X") * mouseSens * Time.timeScale;
@@ -244,6 +254,12 @@ public class PlayerControl : MonoBehaviour
     {
         yield return new WaitForSeconds(fireRate);
         canFire = true;
+    }
+
+    IEnumerator cooldownPickup()
+    {
+        yield return new WaitForSeconds(pickupCooldown);
+        holdingWeapon = false;
     }
 
     private void OnTriggerEnter(Collider collision)
