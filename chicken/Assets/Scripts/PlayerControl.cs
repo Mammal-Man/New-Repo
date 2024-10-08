@@ -130,6 +130,7 @@ public class PlayerControl : MonoBehaviour
             camRot.y = Mathf.Clamp(camRot.y + recoil, -camRotLim, camRotLim);
             playerCam.transform.position = cameraHolder.position;
 
+            //do not recoil
             if(recoilApplied)
             {
                 recoil = 0;
@@ -266,7 +267,7 @@ public class PlayerControl : MonoBehaviour
                     CurrentAmmo = 75;
                     reloadAmount = 15;
                     bulletLifespan = 1;
-                    recoilAmnt = 1;
+                    recoilAmnt = 2;
                     pistol.GetComponent<CapsuleCollider>().enabled = false;
                     holdingWeapon = true;
                     break;
@@ -282,7 +283,7 @@ public class PlayerControl : MonoBehaviour
                     CurrentAmmo = 150;
                     reloadAmount = 30;
                     bulletLifespan = 1;
-                    recoilAmnt = 0.5f;
+                    recoilAmnt = 1;
                     assaultRifle.GetComponent<CapsuleCollider>().enabled = false;
                     holdingWeapon = true;
                     break;
