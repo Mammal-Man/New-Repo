@@ -185,12 +185,6 @@ public class PlayerControl : MonoBehaviour
             CurrentAmmo += reloadAmount;
             Destroy(collision.gameObject);
         }
-
-        if (collision.gameObject.tag == "Weapon")
-        {
-            collision.gameObject.transform.SetPositionAndRotation(weaponSlot.position, weaponSlot.rotation);
-            collision.gameObject.transform.SetParent(weaponSlot);
-        }
     }
 
     // Gimme a second
