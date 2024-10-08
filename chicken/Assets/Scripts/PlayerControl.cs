@@ -22,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     public int HealVal = 1;
     public bool inAir = false;
     public float groundDetecDist = 1.1f;
+    public bool holdingWeapon = false;
     
     [Header("Weapon Stats")]
     public GameObject shot;
@@ -239,7 +240,7 @@ public class PlayerControl : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {   
         // Arm Yourself
-        if (collision.gameObject.tag == "Weapon")
+        if (collision.gameObject.tag == "Weapon" && !holdingWeapon)
         {
             collision.gameObject.transform.SetPositionAndRotation(weaponSlot.position, weaponSlot.rotation);
             collision.gameObject.transform.SetParent(weaponSlot);
@@ -258,6 +259,7 @@ public class PlayerControl : MonoBehaviour
                     reloadAmount = 15;
                     bulletLifespan = 1;
                     pistol.GetComponent<CapsuleCollider>().enabled = false;
+                    holdingWeapon = true;
                     break;
 
                 case "Assault Rifle":
@@ -272,6 +274,7 @@ public class PlayerControl : MonoBehaviour
                     reloadAmount = 30;
                     bulletLifespan = 1;
                     assaultRifle.GetComponent<CapsuleCollider>().enabled = false;
+                    holdingWeapon = true;
                     break;
 
                 default:
