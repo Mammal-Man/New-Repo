@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    [Header("Object References")]
     public GameManager GM;
     Rigidbody myRB;
     Camera playerCam;
