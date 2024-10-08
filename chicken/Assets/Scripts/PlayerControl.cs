@@ -14,6 +14,7 @@ public class PlayerControl : MonoBehaviour
     public Transform weaponSlot;
     public GameObject pistol;
     public GameObject assaultRifle;
+    public bool camFirstPerson = true;
 
     [Header("Player Stats")]
     public int MaxHealth = 9;
