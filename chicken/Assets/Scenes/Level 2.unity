@@ -6256,6 +6256,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6882592264260432121, guid: e47dbbe5998878a499197dd151645fee, type: 3}
+      propertyPath: GM
+      value: 
+      objectReference: {fileID: 1104492290}
+    - target: {fileID: 6882592264260432121, guid: e47dbbe5998878a499197dd151645fee, type: 3}
       propertyPath: weaponSlot
       value: 
       objectReference: {fileID: 1376669502}
@@ -6266,7 +6270,7 @@ PrefabInstance:
     - target: {fileID: 6882592264260432121, guid: e47dbbe5998878a499197dd151645fee, type: 3}
       propertyPath: assaultRifle
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1996707558}
     - target: {fileID: 6882592264260432125, guid: e47dbbe5998878a499197dd151645fee, type: 3}
       propertyPath: m_ProbeAnchor
       value: 
