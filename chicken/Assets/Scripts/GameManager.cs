@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public PlayerControl player;
 
     public Image healthBar;
-    public TextMeshProUGUI clipCounter;
+    public TextMeshProUGUI magCounter;
     public TextMeshProUGUI reserveCounter;
 
     // Start is called before the first frame update
@@ -36,15 +36,15 @@ public class GameManager : MonoBehaviour
             //He's got a weapon
             if (player.weaponID < 0)
             {
-                clipCounter.gameObject.SetActive(false);
+                magCounter.gameObject.SetActive(false);
                 reserveCounter.gameObject.SetActive(false);
             }
             else
             {
-                clipCounter.gameObject.SetActive(true);
+                magCounter.gameObject.SetActive(true);
                 reserveCounter.gameObject.SetActive(true);
 
-                clipCounter.text = "Clip: " + player.CurrentClip + "/" + player.clipSize;
+                magCounter.text = "Magazine: " + player.CurrentMag + "/" + player.magSize;
                 reserveCounter.text = "Ammo: " + player.CurrentAmmo;
             }
 
