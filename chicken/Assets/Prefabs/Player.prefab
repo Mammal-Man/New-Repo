@@ -66,7 +66,7 @@ Transform:
   m_Children:
   - {fileID: 6882592263141386274}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6882592264260432124
 MeshFilter:
@@ -180,27 +180,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d001ef60e82084e817d068d33f5b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GM: {fileID: 0}
+  GM: {fileID: 2249758613172638646, guid: 3c6578cf30dca3a4bb9070afdd0f9ae1, type: 3}
   playerSpawn: {fileID: 0}
   weaponSlot: {fileID: 0}
+  gun: {fileID: 0}
+  pistol: {fileID: 3759923348878064625, guid: 5cf7d47ceae5ed342be6c8d662cbed4c, type: 3}
+  assaultRifle: {fileID: 5003856270852594769, guid: 84d2bc5532347f941afa6bb513cbbbd0, type: 3}
+  shot: {fileID: 2905076373266454313, guid: 3b251d8294ad8d14685f9cb02def4f46, type: 3}
+  camFirstPerson: 1
+  recoilApplied: 0
+  canFire: 1
+  pistolCollected: 0
+  ARCollected: 0
   MaxHealth: 9
   CurrentHealth: 9
   HealVal: 1
-  AmmoRefill: 20
   inAir: 0
   groundDetecDist: 1.1
-  shot: {fileID: 2905076373266454313, guid: 3b251d8294ad8d14685f9cb02def4f46, type: 3}
+  holdingWeapon: 0
+  pickupCooldown: 0.1
   shotSpeed: 10000
-  canFire: 1
   weaponID: -1
   fireRate: 0
   MaxAmmo: 0
   CurrentAmmo: 0
   fireMode: 0
   reloadAmount: 0
-  clipSize: 0
-  CurrentClip: 0
+  magSize: 0
+  CurrentMag: 0
   bulletLifespan: 0
+  recoil: 0
+  recoilAmnt: 0
   MoveSpeed: 10
   sprintMulti: 2.5
   JumpHeight: 10

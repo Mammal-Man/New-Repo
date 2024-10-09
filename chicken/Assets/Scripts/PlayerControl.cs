@@ -38,10 +38,14 @@ public class PlayerControl : MonoBehaviour
     public float fireRate = 0;
     public float MaxAmmo = 0;
     public float CurrentAmmo = 0;
+    public float ARCurrentAmmo = 0;
+    public float pistolCurrentAmmo = 0;
     public int fireMode = 0;
     public float reloadAmount = 0;
     public float magSize = 0;
     public float CurrentMag = 0;
+    public float ARCurrentMag = 0;
+    public float pistolCurrentMag = 0;
     public float bulletLifespan = 0;
     public float recoil = 0;
     public float recoilAmnt = 0;
@@ -88,7 +92,22 @@ public class PlayerControl : MonoBehaviour
             //Drop your weapon!
             if(holdingWeapon && Input.GetKeyDown(KeyCode.Q))
             {
-                StartCoroutine("dropWeapon");
+                gun = weaponSlot.GetChild(0);
+                gun.GetComponent<CapsuleCollider>().enabled = true;
+                gun.transform.SetParent(null);
+                weaponID = -1;
+                StartCoroutine("PickupCooldown");
+            }
+
+            if (weaponID == 0)
+            {
+                CurrentMag = pistolCurrentMag;
+                CurrentAmmo = pistolCurrentAmmo;
+            }
+            if (weaponID == 1)
+            {
+                CurrentMag = ARCurrentMag;
+                CurrentAmmo = ARCurrentAmmo;
             }
 
             //Do the Hokey Pokey and turn yourself around 
@@ -111,7 +130,8 @@ public class PlayerControl : MonoBehaviour
                     recoilApplied = true;
 
                     canFire = false;
-                    CurrentMag--;
+                    if (weaponID == 1)
+                    { ARCurrentMag--; }
                     StartCoroutine("cooldownFire");
                 }
             }
@@ -127,7 +147,8 @@ public class PlayerControl : MonoBehaviour
                     recoilApplied = true;
 
                     canFire = false;
-                    CurrentMag--;
+                    if (weaponID == 0)
+                    { pistolCurrentMag--; }
                     StartCoroutine("cooldownFire");
                 }
             }
@@ -201,8 +222,8 @@ public class PlayerControl : MonoBehaviour
 
                     if (!pistolCollected)
                     {
-                        CurrentMag = 15;
-                        CurrentAmmo = 75;
+                        pistolCurrentMag = 15;
+                        pistolCurrentAmmo = 75;
                     }
                     weaponID = 0;
                     fireMode = 0;
@@ -221,8 +242,8 @@ public class PlayerControl : MonoBehaviour
 
                     if (!ARCollected)
                     {
-                        CurrentMag = 30;
-                        CurrentAmmo = 150;
+                        ARCurrentMag = 30;
+                        ARCurrentAmmo = 150;
                     }
                     weaponID = 1;
                     fireMode = 2;
@@ -289,15 +310,31 @@ public class PlayerControl : MonoBehaviour
 
             if(CurrentAmmo < reloadCount)
             {
-                CurrentMag += CurrentAmmo;
-                CurrentAmmo = 0;
+                if (weaponID == 0)
+                {
+                    pistolCurrentMag += pistolCurrentAmmo;
+                    pistolCurrentAmmo = 0;
+                }
+                if (weaponID == 1)
+                {
+                    ARCurrentMag += ARCurrentAmmo;
+                    ARCurrentAmmo = 0;
+                }
                 return;
             }
 
             else
             {
-                CurrentMag += reloadCount;
-                CurrentAmmo -= reloadCount;
+                if (weaponID == 0)
+                {
+                    pistolCurrentMag += reloadCount;
+                    pistolCurrentAmmo -= reloadCount;
+                }
+                if (weaponID == 1)
+                {
+                    ARCurrentMag += reloadCount;
+                    ARCurrentAmmo -= reloadCount;
+                }
                 return;
             }
         }
@@ -309,12 +346,8 @@ public class PlayerControl : MonoBehaviour
         canFire = true;
     }
 
-    IEnumerator dropWeapon()
+    IEnumerator PickupCooldown()
     {
-        gun = weaponSlot.GetChild(0);
-        gun.GetComponent<CapsuleCollider>().enabled = true;
-        gun.transform.SetParent(null);
-        weaponID = -1;
         yield return new WaitForSeconds(pickupCooldown);
         holdingWeapon = false;
     }
