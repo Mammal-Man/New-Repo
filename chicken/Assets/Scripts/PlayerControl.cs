@@ -37,18 +37,20 @@ public class PlayerControl : MonoBehaviour
     public int weaponID = -1;
     public float fireRate = 0;
     public float MaxAmmo = 0;
-    public float CurrentAmmo = 0;
-    public float ARCurrentAmmo = 0;
-    public float pistolCurrentAmmo = 0;
     public int fireMode = 0;
     public float reloadAmount = 0;
     public float magSize = 0;
-    public float CurrentMag = 0;
-    public float ARCurrentMag = 0;
-    public float pistolCurrentMag = 0;
     public float bulletLifespan = 0;
     public float recoil = 0;
     public float recoilAmnt = 0;
+
+    [Header("Ammo Counts")]
+    public float CurrentAmmo = 0;
+    public float ARCurrentAmmo = 0;
+    public float pistolCurrentAmmo = 0;
+    public float CurrentMag = 0;
+    public float ARCurrentMag = 0;
+    public float pistolCurrentMag = 0;
 
     [Header("Movement Settings")]
     public float MoveSpeed = 10;
