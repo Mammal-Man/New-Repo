@@ -282,7 +282,8 @@ public class PlayerControl : MonoBehaviour
         // I need more booletts
         if (CurrentAmmo < MaxAmmo && collision.gameObject.tag == "AmmoPickup")
         {
-            CurrentAmmo += reloadAmount;
+            ARCurrentAmmo += reloadAmount;
+            pistolCurrentAmmo += reloadAmount;
             Destroy(collision.gameObject);
         }
     }
