@@ -101,6 +101,7 @@ public class PlayerControl : MonoBehaviour
                 StartCoroutine("PickupCooldown");
             }
 
+            //What gun am I using?
             if (weaponID == 0)
             {
                 CurrentMag = pistolCurrentMag;
