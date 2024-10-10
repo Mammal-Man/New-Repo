@@ -203,14 +203,18 @@ MonoBehaviour:
   weaponID: -1
   fireRate: 0
   MaxAmmo: 0
-  CurrentAmmo: 0
   fireMode: 0
   reloadAmount: 0
   magSize: 0
-  CurrentMag: 0
-  bulletLifespan: 0
+  bulletLifespan: 1
   recoil: 0
   recoilAmnt: 0
+  CurrentAmmo: 0
+  ARCurrentAmmo: 0
+  pistolCurrentAmmo: 0
+  CurrentMag: 0
+  ARCurrentMag: 0
+  pistolCurrentMag: 0
   MoveSpeed: 10
   sprintMulti: 2.5
   JumpHeight: 10

@@ -40,7 +40,7 @@ public class PlayerControl : MonoBehaviour
     public int fireMode = 0;
     public float reloadAmount = 0;
     public float magSize = 0;
-    public float bulletLifespan = 0;
+    public float bulletLifespan = 1;
     public float recoil = 0;
     public float recoilAmnt = 0;
 
@@ -234,7 +234,6 @@ public class PlayerControl : MonoBehaviour
                     magSize = 15;
                     MaxAmmo = 75;
                     reloadAmount = 15;
-                    bulletLifespan = 1;
                     recoilAmnt = 2;
                     pistol.GetComponent<CapsuleCollider>().enabled = false;
                     holdingWeapon = true;
@@ -254,7 +253,6 @@ public class PlayerControl : MonoBehaviour
                     magSize = 30;
                     MaxAmmo = 150;
                     reloadAmount = 30;
-                    bulletLifespan = 1;
                     recoilAmnt = 1;
                     assaultRifle.GetComponent<CapsuleCollider>().enabled = false;
                     holdingWeapon = true;
