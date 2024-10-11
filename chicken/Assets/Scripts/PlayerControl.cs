@@ -192,6 +192,9 @@ public class PlayerControl : MonoBehaviour
                 { sprinting = false; }
             }
 
+            if(inAir)
+            { sprinting = false; }
+
             if (sprinting)
             { temp.x = vertMove * MoveSpeed * sprintMulti; }
             else
