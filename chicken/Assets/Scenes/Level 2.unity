@@ -1370,6 +1370,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 745aa6c54804abc49a1e7ae1420a2b98, type: 3}
+--- !u!1 &403846397 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6351583377485600924, guid: 4c2f35c227fae994c97167b9fbef61f1, type: 3}
+  m_PrefabInstance: {fileID: 1493145312}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &414306854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4464,6 +4469,10 @@ PrefabInstance:
       propertyPath: reserveCounter
       value: 
       objectReference: {fileID: 1493145313}
+    - target: {fileID: 2249758613172638646, guid: 3c6578cf30dca3a4bb9070afdd0f9ae1, type: 3}
+      propertyPath: munitionsDisplay
+      value: 
+      objectReference: {fileID: 403846397}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
