@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public bool isPaused = false;
 
     public GameObject pauseMenu;
-    public GameObject redDoot;
+    public GameObject HUD;
     public PlayerControl player;
 
     public Image healthBar;
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
                 if (!isPaused)
                 {
                     pauseMenu.SetActive(true);
-                    redDoot.SetActive(false);
+                    HUD.SetActive(false);
 
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
     public void Resume()
     {
         pauseMenu.SetActive(false);
-        redDoot.SetActive(true);
+        HUD.SetActive(true);
 
         Time.timeScale = 1;
 
