@@ -192,8 +192,8 @@ MonoBehaviour:
   canFire: 1
   pistolCollected: 0
   ARCollected: 0
-  MaxHealth: 9
-  CurrentHealth: 9
+  MaxHealth: 5
+  CurrentHealth: 5
   HealVal: 1
   inAir: 0
   groundDetecDist: 1.1
