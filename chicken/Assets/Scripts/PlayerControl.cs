@@ -24,10 +24,10 @@ public class PlayerControl : MonoBehaviour
     public bool ARCollected;
 
     [Header("Player Stats")]
-    public int MaxHealth = 9;
-    public int CurrentHealth = 9;
+    public int MaxHealth = 5;
+    public int CurrentHealth = 5;
     public int HealVal = 1;
-    public bool inAir = false;
+    public bool inAir = true;
     public float groundDetecDist = 1.1f;
     public bool holdingWeapon = false;
     public float pickupCooldown = 0.1f;

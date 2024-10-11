@@ -43,12 +43,9 @@ public class BasicEnemyController : MonoBehaviour
         //Find him
         if (other.gameObject.tag == "Player")
         { agent.destination = player.transform.position; }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
         if (other.gameObject.tag == "Shot")
-        { agent.destination = player.transform.position; }
+        { agent.destination = player.shot.transform.position; }
     }
 
     private void OnTriggerExit(Collider other)
