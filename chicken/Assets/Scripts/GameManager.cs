@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Image healthBar;
     public TextMeshProUGUI magCounter;
     public TextMeshProUGUI reserveCounter;
+    public GameObject munitionsDisplay;
 
     // Start is called before the first frame update
     void Start()
@@ -36,13 +37,11 @@ public class GameManager : MonoBehaviour
             //He's got a weapon
             if (player.weaponID < 0)
             {
-                magCounter.gameObject.SetActive(false);
-                reserveCounter.gameObject.SetActive(false);
+                munitionsDisplay.gameObject.SetActive(false);
             }
             else
             {
-                magCounter.gameObject.SetActive(true);
-                reserveCounter.gameObject.SetActive(true);
+                munitionsDisplay.gameObject.SetActive(true);
 
                 if (player.weaponID == 0)
                 { magCounter.text = "Pistol: " + player.CurrentMag + "/" + player.magSize; }
