@@ -44,7 +44,10 @@ public class GameManager : MonoBehaviour
                 magCounter.gameObject.SetActive(true);
                 reserveCounter.gameObject.SetActive(true);
 
-                magCounter.text = "Magazine: " + player.CurrentMag + "/" + player.magSize;
+                if (player.weaponID == 0)
+                { magCounter.text = "Pistol: " + player.CurrentMag + "/" + player.magSize; }
+                if (player.weaponID == 1)
+                { magCounter.text = "Assault Rifle: " + player.CurrentMag + "/" + player.magSize; }
                 reserveCounter.text = "Ammo: " + player.CurrentAmmo;
             }
 
