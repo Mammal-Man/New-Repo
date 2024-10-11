@@ -82,8 +82,8 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!GM.isPaused)
-        { 
+        if (!GM.isPaused)
+        {
             //Respawn
             if (CurrentHealth <= 0)
             {
@@ -92,7 +92,7 @@ public class PlayerControl : MonoBehaviour
             }
 
             //Drop your weapon!
-            if(holdingWeapon && Input.GetKeyDown(KeyCode.Q))
+            if (holdingWeapon && Input.GetKeyDown(KeyCode.Q))
             {
                 gun = weaponSlot.GetChild(0);
                 gun.GetComponent<CapsuleCollider>().enabled = true;
@@ -165,7 +165,7 @@ public class PlayerControl : MonoBehaviour
             playerCam.transform.position = cameraHolder.position;
 
             //do not recoil
-            if(recoilApplied)
+            if (recoilApplied)
             {
                 recoil = 0;
                 recoilApplied = false;
@@ -200,9 +200,17 @@ public class PlayerControl : MonoBehaviour
             temp.z = horizMove * MoveSpeed;
 
             //Jump for Joy
-            if (Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, -transform.up, groundDetecDist))
+            if (Input.GetKeyDown(KeyCode.Space) && !inAir)
             {
                 temp.y = JumpHeight;
+            }
+
+            if (Physics.Raycast(transform.position, -transform.up, groundDetecDist))
+            {
+                inAir = false;
+            }
+            else
+            {
                 inAir = true;
             }
 
