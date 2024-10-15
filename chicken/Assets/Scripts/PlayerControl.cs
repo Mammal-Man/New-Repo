@@ -127,6 +127,7 @@ public class PlayerControl : MonoBehaviour
                 // Automatics
                 if (Input.GetMouseButton(0) && canFire && CurrentMag > 0 && weaponID > -1)
                 {
+                    wpnSpeaker.Play();
                     GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
                     s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
                     Destroy(s, bulletLifespan);
@@ -144,6 +145,7 @@ public class PlayerControl : MonoBehaviour
                 // Semi-Autos
                 if (Input.GetMouseButtonDown(0) && canFire && CurrentMag > 0 && weaponID > -1)
                 {
+                    wpnSpeaker.Play();
                     GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
                     s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotSpeed);
                     Destroy(s, bulletLifespan);
@@ -228,6 +230,7 @@ public class PlayerControl : MonoBehaviour
         // Arm Yourself
         if (collision.gameObject.tag == "Weapon" && !holdingWeapon)
         {
+            wpnSpeaker = collision.gameObject.GetComponent<AudioSource>();
             collision.gameObject.transform.SetPositionAndRotation(weaponSlot.position, weaponSlot.rotation);
             collision.gameObject.transform.SetParent(weaponSlot);
 
