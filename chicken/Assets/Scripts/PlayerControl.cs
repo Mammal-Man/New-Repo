@@ -121,7 +121,7 @@ public class PlayerControl : MonoBehaviour
             transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.up);
 
             // FIRE!
-            if (fireMode > 1)
+            if (fireMode > 0)
             {
                 // Automatics
                 if (Input.GetMouseButton(0) && canFire && CurrentMag > 0 && weaponID > -1)
@@ -138,7 +138,7 @@ public class PlayerControl : MonoBehaviour
                     StartCoroutine("cooldownFire");
                 }
             }
-            else
+            else if (fireMode < 0)
             {
                 // Semi-Autos
                 if (Input.GetMouseButtonDown(0) && canFire && CurrentMag > 0 && weaponID > -1)
@@ -155,7 +155,7 @@ public class PlayerControl : MonoBehaviour
                     StartCoroutine("cooldownFire");
                 }
             }
-
+            
             //Reload
             if (Input.GetKeyDown(KeyCode.R))
             { reloadClip(); }
@@ -240,7 +240,7 @@ public class PlayerControl : MonoBehaviour
                         pistolCurrentAmmo = 75;
                     }
                     weaponID = 0;
-                    fireMode = 0;
+                    fireMode = -1;
                     fireRate = 0.25f;
                     magSize = 15;
                     MaxAmmo = 75;
@@ -259,7 +259,7 @@ public class PlayerControl : MonoBehaviour
                         ARCurrentAmmo = 150;
                     }
                     weaponID = 1;
-                    fireMode = 2;
+                    fireMode = 1;
                     fireRate = 0.1f;
                     magSize = 30;
                     MaxAmmo = 150;
