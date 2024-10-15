@@ -12,7 +12,6 @@ TagManager:
   - Basic Enemy
   - Enemy
   - Enemy Shot
-  - Melee
   layers:
   - Default
   - TransparentFX
