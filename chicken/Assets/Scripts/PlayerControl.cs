@@ -43,6 +43,7 @@ public class PlayerControl : MonoBehaviour
     public float bulletLifespan = 1;
     public float recoil = 0;
     public float recoilAmnt = 0;
+    public AudioSource wpnSpeaker;
 
     [Header("Ammo Counts")]
     public float CurrentAmmo = 0;
