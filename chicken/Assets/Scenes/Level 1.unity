@@ -2449,6 +2449,17 @@ Transform:
   m_Father: {fileID: 963194228}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1448145225 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 637906714336734564, guid: 4c2f35c227fae994c97167b9fbef61f1, type: 3}
+  m_PrefabInstance: {fileID: 1135338566}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1572857050
 GameObject:
   m_ObjectHideFlags: 0
@@ -3495,6 +3506,10 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1135338571}
+    - target: {fileID: 2249758613172638646, guid: 3c6578cf30dca3a4bb9070afdd0f9ae1, type: 3}
+      propertyPath: deathCount
+      value: 
+      objectReference: {fileID: 1448145225}
     - target: {fileID: 2249758613172638646, guid: 3c6578cf30dca3a4bb9070afdd0f9ae1, type: 3}
       propertyPath: magCounter
       value: 

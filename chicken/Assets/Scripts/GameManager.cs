@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Image healthBar;
     public TextMeshProUGUI magCounter;
     public TextMeshProUGUI reserveCounter;
+    public TextMeshProUGUI deathCount;
     public GameObject munitionsDisplay;
 
     // Start is called before the first frame update
@@ -33,6 +34,11 @@ public class GameManager : MonoBehaviour
         {
             //healthy player
             healthBar.fillAmount = Mathf.Clamp((float)player.CurrentHealth / (float)player.MaxHealth, 0, 1);
+
+            if (player.deathCount > 0)
+            {
+                deathCount.text = "Deaths: " + player.deathCount;
+            }
 
             //He's got a weapon
             if (player.weaponID < 0)

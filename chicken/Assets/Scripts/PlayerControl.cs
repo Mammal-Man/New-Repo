@@ -32,6 +32,7 @@ public class PlayerControl : MonoBehaviour
     public bool holdingWeapon = false;
     public float pickupCooldown = 0.1f;
     public int timesHit;
+    public int deathCount;
 
     [Header("Weapon Stats")]
     public float shotSpeed = 100;
@@ -91,6 +92,7 @@ public class PlayerControl : MonoBehaviour
             {
                 transform.position = playerSpawn.transform.position;
                 CurrentHealth = MaxHealth;
+                deathCount++;
             }
 
             //Drop your weapon!
