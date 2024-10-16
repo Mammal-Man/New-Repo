@@ -90,7 +90,7 @@ public class PlayerControl : MonoBehaviour
             if (CurrentHealth <= 0)
             {
                 transform.position = playerSpawn.transform.position;
-                CurrentHealth = 100;
+                CurrentHealth = MaxHealth;
             }
 
             //Drop your weapon!
