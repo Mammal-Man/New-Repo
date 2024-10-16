@@ -37,8 +37,11 @@ public class GameManager : MonoBehaviour
 
             if (player.deathCount > 0)
             {
+                deathCount.gameObject.SetActive(true);
                 deathCount.text = "Deaths: " + player.deathCount;
             }
+            else
+                deathCount.gameObject.SetActive(false);
 
             //He's got a weapon
             if (player.weaponID < 0)
