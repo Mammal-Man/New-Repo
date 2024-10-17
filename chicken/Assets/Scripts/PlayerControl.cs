@@ -123,6 +123,7 @@ public class PlayerControl : MonoBehaviour
 
             playerCam.transform.rotation = Quaternion.Euler(-camRot.y, camRot.x, 0);
             transform.localRotation = Quaternion.AngleAxis(camRot.x, Vector3.up);
+            cameraHolder.transform.rotation = playerCam.transform.rotation;
 
             // FIRE!
             if (fireMode > 0)
