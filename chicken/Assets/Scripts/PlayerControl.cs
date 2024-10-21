@@ -31,7 +31,6 @@ public class PlayerControl : MonoBehaviour
     public float groundDetecDist = 1.1f;
     public bool holdingWeapon = false;
     public float pickupCooldown = 0.1f;
-    public int timesHit;
     public int deathCount;
 
     [Header("Weapon Stats")]
@@ -300,7 +299,6 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.tag == "Basic Enemy")
         {
             CurrentHealth --;
-            timesHit++;
         }
 
         //That's next level thinking
