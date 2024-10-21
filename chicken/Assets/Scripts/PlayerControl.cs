@@ -90,6 +90,15 @@ public class PlayerControl : MonoBehaviour
             //Respawn
             if (CurrentHealth <= 0)
             {
+                if (weaponID > -1)
+                {
+                    gun = weaponSlot.GetChild(0);
+                    gun.GetComponent<CapsuleCollider>().enabled = true;
+                    gun.transform.SetParent(null);
+                    weaponID = -1;
+                    StartCoroutine("PickupCooldown");
+                }
+
                 transform.position = playerSpawn.transform.position;
                 CurrentHealth = MaxHealth;
                 deathCount++;
