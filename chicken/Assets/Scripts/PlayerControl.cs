@@ -303,8 +303,28 @@ public class PlayerControl : MonoBehaviour
             timesHit++;
         }
 
-        // I need a medic bag
-        if (CurrentHealth < MaxHealth && collision.gameObject.tag == "HealPickup")
+        //That's next level thinking
+        //I'm Hit!
+        if (collision.gameObject.tag == "Teleporter")
+        {
+            switch (collision.gameObject.name)
+            {
+
+                case "Level1":
+                    GM.LoadLevel(1);
+                    break;
+
+                case "Level2":
+                    GM.LoadLevel(2);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+            // I need a medic bag
+            if (CurrentHealth < MaxHealth && collision.gameObject.tag == "HealPickup")
         {
             CurrentHealth += HealVal;
             Destroy(collision.gameObject);

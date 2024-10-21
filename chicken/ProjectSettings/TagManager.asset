@@ -12,6 +12,7 @@ TagManager:
   - Basic Enemy
   - Enemy
   - Enemy Shot
+  - Teleporter
   layers:
   - Default
   - TransparentFX
