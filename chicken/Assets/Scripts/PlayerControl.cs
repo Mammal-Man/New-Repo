@@ -45,7 +45,6 @@ public class PlayerControl : MonoBehaviour
     public float bulletLifespan = 1;
     public float recoil = 0;
     public float recoilAmnt = 0;
-    public float reloadTime = 0;
     public AudioSource wpnSpeaker;
 
     [Header("Ammo Counts")]
@@ -264,7 +263,6 @@ public class PlayerControl : MonoBehaviour
                     MaxAmmo = 75;
                     reloadAmount = 15;
                     recoilAmnt = 2;
-                    reloadTime = 1;
                     pistol.GetComponent<CapsuleCollider>().enabled = false;
                     holdingWeapon = true;
                     pistolCollected = true;
@@ -284,7 +282,6 @@ public class PlayerControl : MonoBehaviour
                     MaxAmmo = 150;
                     reloadAmount = 30;
                     recoilAmnt = 1;
-                    reloadTime = 3;
                     assaultRifle.GetComponent<CapsuleCollider>().enabled = false;
                     holdingWeapon = true;
                     ARCollected = true;
@@ -355,8 +352,6 @@ public class PlayerControl : MonoBehaviour
     // Put the ammo in the gun
     public void reloadClip()
     {
-        ReloadTime();
-
         if(CurrentMag >= magSize)
         {
             return;
@@ -407,10 +402,5 @@ public class PlayerControl : MonoBehaviour
     {
         yield return new WaitForSeconds(pickupCooldown);
         holdingWeapon = false;
-    }
-
-    IEnumerator ReloadTime()
-    {
-        yield return new WaitForSeconds(reloadTime);
     }
 }
