@@ -36,12 +36,12 @@ public class BasicEnemyController : MonoBehaviour
             Destroy(gameObject);
             GameObject corpse = Instantiate(Corpse, transform.position, transform.rotation);
 
-            if (!GameObject.Find("Ammo Pickup(Clone)") && player.CurrentAmmo != player.MaxAmmo)
+            if (!GameObject.Find("Ammo Pickup(Clone)") && player.CurrentAmmo < player.MaxAmmo)
             {
                 GameObject shootingBox = Instantiate(bulletBox, transform.position, transform.rotation);
             }
 
-            if (!GameObject.Find("Heal pickup(Clone)") && player.CurrentHealth != player.MaxHealth)
+            if (!GameObject.Find("Heal pickup(Clone)") && player.CurrentHealth < player.MaxHealth)
             {
                 GameObject healingBox = Instantiate(healBox, transform.position, transform.rotation);
             }
