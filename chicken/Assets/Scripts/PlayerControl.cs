@@ -27,7 +27,6 @@ public class PlayerControl : MonoBehaviour
     public float MaxHealth = 5;
     public float CurrentHealth = 5;
     public int HealVal = 1;
-    public bool inAir = true;
     public float groundDetecDist = 1.1f;
     public bool holdingWeapon = false;
     public float pickupCooldown = 0.1f;
@@ -56,11 +55,12 @@ public class PlayerControl : MonoBehaviour
     public float ARCurrentMag = 0;
     public float pistolCurrentMag = 0;
 
-    [Header("Movement Settings")]
+    [Header("Movement Stats")]
     public float MoveSpeed = 10;
     public float sprintMulti = 2.5f;
     public float JumpHeight = 5;
     public bool sprinting = false;
+    public bool inAir = true;
 
     [Header("User Settings")]
     public bool sprintTogOpt = false;
@@ -198,22 +198,19 @@ public class PlayerControl : MonoBehaviour
             //Run for your life
             if (!sprintTogOpt)
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (Input.GetKey(KeyCode.LeftShift) && !inAir)
                 { sprinting = true; }
                 if (Input.GetKeyUp(KeyCode.LeftShift))
                 { sprinting = false; }
             }
             else
             {
-                if (Input.GetKey(KeyCode.LeftShift) && vertMove > 0)
+                if (Input.GetKey(KeyCode.LeftShift) && !inAir && vertMove > 0)
                 { sprinting = true; }
                 if (vertMove <= 0)
                 { sprinting = false; }
             }
-
-            if(inAir)
-            { sprinting = false; }
-
+            
             if (sprinting)
             { temp.x = vertMove * MoveSpeed * sprintMulti; }
             else
