@@ -9,6 +9,8 @@ public class BasicEnemyController : MonoBehaviour
     public PlayerControl player;
     public NavMeshAgent agent;
     public GameObject Corpse;
+    public GameObject healBox;
+    public GameObject bulletBox;
     public float corpseLifespan = 30;
 
     [Header("Enemy Stats")]
@@ -33,6 +35,17 @@ public class BasicEnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             GameObject corpse = Instantiate(Corpse, transform.position, transform.rotation);
+
+            if (!GameObject.Find("Ammo Pickup(Clone)") && player.CurrentAmmo != player.MaxAmmo)
+            {
+                GameObject shootingBox = Instantiate(bulletBox, transform.position, transform.rotation);
+            }
+
+            if (!GameObject.Find("Heal pickup(Clone)") && player.CurrentHealth != player.MaxHealth)
+            {
+                GameObject healingBox = Instantiate(healBox, transform.position, transform.rotation);
+            }
+
             corpse.GetComponent<Rigidbody>().AddForce(-transform.forward * corpseForce);
             Destroy(corpse, corpseLifespan);
         }

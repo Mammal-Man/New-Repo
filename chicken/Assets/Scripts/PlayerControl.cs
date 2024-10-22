@@ -37,7 +37,9 @@ public class PlayerControl : MonoBehaviour
     public float shotSpeed = 100;
     public int weaponID = -1;
     public float fireRate = 0;
-    public float MaxAmmo = 0;
+    public float MaxAmmo;
+    public float pistolMaxAmmo = 0;
+    public float ARMaxAmmo = 0;
     public int fireMode = 0;
     public float reloadAmount = 0;
     public float magSize = 0;
@@ -118,11 +120,13 @@ public class PlayerControl : MonoBehaviour
             {
                 CurrentMag = pistolCurrentMag;
                 CurrentAmmo = pistolCurrentAmmo;
+                MaxAmmo = pistolMaxAmmo;
             }
             if (weaponID == 1)
             {
                 CurrentMag = ARCurrentMag;
                 CurrentAmmo = ARCurrentAmmo;
+                MaxAmmo = ARMaxAmmo;
             }
 
             //Do the Hokey Pokey and turn yourself around 
@@ -259,7 +263,7 @@ public class PlayerControl : MonoBehaviour
                     fireMode = -1;
                     fireRate = 0.25f;
                     magSize = 15;
-                    MaxAmmo = 75;
+                    pistolMaxAmmo = 75;
                     reloadAmount = 15;
                     recoilAmnt = 2;
                     pistol.GetComponent<CapsuleCollider>().enabled = false;
@@ -278,7 +282,7 @@ public class PlayerControl : MonoBehaviour
                     fireMode = 1;
                     fireRate = 0.1f;
                     magSize = 30;
-                    MaxAmmo = 150;
+                    ARMaxAmmo = 150;
                     reloadAmount = 30;
                     recoilAmnt = 1;
                     assaultRifle.GetComponent<CapsuleCollider>().enabled = false;
@@ -330,8 +334,14 @@ public class PlayerControl : MonoBehaviour
         // I need more booletts
         if (CurrentAmmo < MaxAmmo && collision.gameObject.tag == "AmmoPickup")
         {
-            ARCurrentAmmo += reloadAmount;
-            pistolCurrentAmmo += reloadAmount;
+            if (ARCurrentAmmo + reloadAmount < ARMaxAmmo)
+            { ARCurrentAmmo += reloadAmount; }
+            else { ARCurrentAmmo = ARMaxAmmo; }
+
+            if (pistolCurrentAmmo + reloadAmount < pistolMaxAmmo)
+            { pistolCurrentAmmo += reloadAmount; }
+            else { pistolCurrentAmmo = pistolMaxAmmo; }
+
             Destroy(collision.gameObject);
         }
     }
