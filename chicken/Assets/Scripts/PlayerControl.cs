@@ -100,7 +100,9 @@ public class PlayerControl : MonoBehaviour
                     StartCoroutine("PickupCooldown");
                 }
 
-                GM.restartLevel();
+                transform.position = playerSpawn.transform.position;
+                CurrentHealth = MaxHealth;
+                deathCount++;
             }
 
             //Drop your weapon!
@@ -301,7 +303,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         //That's next level thinking
-        if (collision.gameObject.tag == "Teleporter" && holdingWeapon)
+        if (collision.gameObject.tag == "Teleporter")
         {
             switch (collision.gameObject.name)
             {
