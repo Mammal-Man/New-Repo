@@ -1005,6 +1005,10 @@ PrefabInstance:
       propertyPath: assaultRifle
       value: 
       objectReference: {fileID: 1996707558}
+    - target: {fileID: 363705693940869355, guid: 6e3f24a5d13b3ea41b7adb4476c7560a, type: 3}
+      propertyPath: conditionText
+      value: 
+      objectReference: {fileID: 1454280126}
     - target: {fileID: 363705693940869357, guid: 6e3f24a5d13b3ea41b7adb4476c7560a, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1301,6 +1305,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 745aa6c54804abc49a1e7ae1420a2b98, type: 3}
+--- !u!1 &1454280126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2041586023806755108, guid: 4c2f35c227fae994c97167b9fbef61f1, type: 3}
+  m_PrefabInstance: {fileID: 1493145312}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1493145312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1907,6 +1916,10 @@ PrefabInstance:
       propertyPath: clipCounter
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2249758613172638646, guid: 3c6578cf30dca3a4bb9070afdd0f9ae1, type: 3}
+      propertyPath: conditionText
+      value: 
+      objectReference: {fileID: 1454280126}
     - target: {fileID: 2249758613172638646, guid: 3c6578cf30dca3a4bb9070afdd0f9ae1, type: 3}
       propertyPath: reserveCounter
       value: 

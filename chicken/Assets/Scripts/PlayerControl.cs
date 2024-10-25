@@ -17,6 +17,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject pistol;
     public GameObject assaultRifle;
     public GameObject shot;
+    public GameObject conditionText;
     public bool camFirstPerson = true;
     public bool recoilApplied = false;
     public bool canFire = true;
@@ -305,19 +306,26 @@ public class PlayerControl : MonoBehaviour
         //That's next level thinking
         if (collision.gameObject.tag == "Teleporter")
         {
-            switch (collision.gameObject.name)
+            if (holdingWeapon)
             {
+                switch (collision.gameObject.name)
+                {
 
-                case "Level1":
-                    GM.LoadLevel(1);
-                    break;
+                    case "Level1":
+                        GM.LoadLevel(1);
+                        break;
 
-                case "Level2":
-                    GM.LoadLevel(2);
-                    break;
+                    case "Level2":
+                        GM.LoadLevel(2);
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                conditionText.SetActive(true);
             }
         }
 
@@ -340,6 +348,14 @@ public class PlayerControl : MonoBehaviour
             else { pistolCurrentAmmo = pistolMaxAmmo; }
 
             Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Teleporter")
+        {
+            conditionText.SetActive(false);
         }
     }
 

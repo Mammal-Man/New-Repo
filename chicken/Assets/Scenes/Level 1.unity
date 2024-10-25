@@ -1895,6 +1895,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &978351027 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2041586023806755108, guid: 4c2f35c227fae994c97167b9fbef61f1, type: 3}
+  m_PrefabInstance: {fileID: 1135338566}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1023927282
 GameObject:
   m_ObjectHideFlags: 0
@@ -4054,6 +4059,10 @@ PrefabInstance:
       propertyPath: playerSpawn
       value: 
       objectReference: {fileID: 1572857050}
+    - target: {fileID: 363705693940869355, guid: 6e3f24a5d13b3ea41b7adb4476c7560a, type: 3}
+      propertyPath: conditionText
+      value: 
+      objectReference: {fileID: 978351027}
     - target: {fileID: 363705693940869357, guid: 6e3f24a5d13b3ea41b7adb4476c7560a, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -4252,6 +4261,10 @@ PrefabInstance:
       propertyPath: clipCounter
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2249758613172638646, guid: 3c6578cf30dca3a4bb9070afdd0f9ae1, type: 3}
+      propertyPath: conditionText
+      value: 
+      objectReference: {fileID: 978351027}
     - target: {fileID: 2249758613172638646, guid: 3c6578cf30dca3a4bb9070afdd0f9ae1, type: 3}
       propertyPath: reserveCounter
       value: 
