@@ -353,7 +353,7 @@ public class PlayerControl : MonoBehaviour
                         break;
 
                     case "Level2":
-                        Gme.LoadLevel(2);
+                        GM.LoadLevel(2);
                         break;
 
                     default:
