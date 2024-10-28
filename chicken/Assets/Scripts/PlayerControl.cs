@@ -342,7 +342,8 @@ public class PlayerControl : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        conditionText.SetActive(true); 
+        if (collision.gameObject.tag == "Teleporter")
+        conditionText.SetActive(false); 
     }
 
     // Gimme a second
