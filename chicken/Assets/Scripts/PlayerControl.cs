@@ -345,8 +345,10 @@ public class PlayerControl : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "Teleporter")
-        conditionText.SetActive(false);
-        redDoot.SetActive(false);
+        {
+            conditionText.SetActive(false);
+            redDoot.SetActive(false);
+        }
     }
 
     // Gimme a second
