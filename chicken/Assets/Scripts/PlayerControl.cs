@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject assaultRifle;
     public GameObject shot;
     public GameObject conditionText;
+    public GameObject redDoot;
     public bool camFirstPerson = true;
     public bool recoilApplied = false;
     public bool canFire = true;
@@ -315,6 +316,7 @@ public class PlayerControl : MonoBehaviour
             else
             {
                 conditionText.SetActive(true);
+                redDoot.SetActive(false);
             }
         }
 
@@ -343,7 +345,8 @@ public class PlayerControl : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "Teleporter")
-        conditionText.SetActive(false); 
+        conditionText.SetActive(false);
+        redDoot.SetActive(false);
     }
 
     // Gimme a second
