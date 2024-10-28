@@ -92,18 +92,7 @@ public class PlayerControl : MonoBehaviour
             //Respawn
             if (CurrentHealth <= 0)
             {
-                if (weaponID > -1)
-                {
-                    gun = weaponSlot.GetChild(0);
-                    gun.GetComponent<CapsuleCollider>().enabled = true;
-                    gun.transform.SetParent(null);
-                    weaponID = -1;
-                    StartCoroutine("PickupCooldown");
-                }
-
-                transform.position = playerSpawn.transform.position;
-                CurrentHealth = MaxHealth;
-                deathCount++;
+                GM.playerDied();
             }
 
             //Drop your weapon!
@@ -353,9 +342,29 @@ public class PlayerControl : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Teleporter")
+        if (collision.gameObject.tag == "Teleporter" && holdingWeapon)
         {
-            conditionText.SetActive(false);
+            if(holdingWeapon)
+            {
+               switch (collision.gameObject.name)
+                {
+                    case "level1":
+                        GM.LoadLevel(1);
+                        break;
+
+                    case "Level2":
+                        Gme.LoadLevel(2);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            else
+            {
+                conditionText.SetActive(true);
+            }
         }
     }
 

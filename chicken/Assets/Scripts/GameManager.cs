@@ -8,9 +8,11 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public bool isPaused = false;
+    public bool PlayerDied = false;
 
     public GameObject pauseMenu;
     public GameObject HUD;
+    public GameObject deathScreen;
     public PlayerControl player;
 
     public Image healthBar;
@@ -62,21 +64,16 @@ public class GameManager : MonoBehaviour
             //Pause
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (!isPaused)
+                if (!PlayerDied)
                 {
-                    pauseMenu.SetActive(true);
-                    HUD.SetActive(false);
+                    if (!isPaused)
+                    {
+                        Pause();
+                    }
 
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-
-                    Time.timeScale = 0;
-
-                    isPaused = true;
+                    else
+                    { Resume(); }
                 }
-
-                else
-                { Resume(); }
             }
         }
     }
@@ -114,4 +111,52 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void playerDied()
+    {
+        deathScreen.SetActive(true);
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        HUD.SetActive(false);
+        PlayerDied = true;
+    }
+
+    public void respawn()
+    {
+        if (player.weaponID > -1)
+        {
+            player.gun = player.weaponSlot.GetChild(0);
+            player.gun.GetComponent<CapsuleCollider>().enabled = true;
+            player.gun.transform.SetParent(null);
+            player.weaponID = -1;
+            StartCoroutine("PickupCooldown");
+        }
+
+        player.transform.position = player.playerSpawn.transform.position;
+        player.CurrentHealth = player.MaxHealth;
+
+        Time.timeScale = 1;
+
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+        HUD.SetActive(true);
+        PlayerDied = false;
+        deathScreen.SetActive(false);
+    }
+
+
+    public void Pause()
+    { 
+        pauseMenu.SetActive(true);
+        HUD.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Time.timeScale = 0;
+
+        isPaused = true;
+    }
+    
 }
