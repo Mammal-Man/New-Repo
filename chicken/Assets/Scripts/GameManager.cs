@@ -143,6 +143,7 @@ public class GameManager : MonoBehaviour
         HUD.SetActive(true);
         PlayerDied = false;
         deathScreen.SetActive(false);
+        player.deathCount++;
     }
 
 
