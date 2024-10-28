@@ -136,14 +136,13 @@ public class GameManager : MonoBehaviour
         player.transform.position = player.playerSpawn.transform.position;
         player.CurrentHealth = player.MaxHealth;
 
-        Time.timeScale = 1;
-
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
         HUD.SetActive(true);
         PlayerDied = false;
         deathScreen.SetActive(false);
         player.deathCount++;
+        Time.timeScale = 1;
     }
 
 
