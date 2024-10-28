@@ -342,30 +342,7 @@ public class PlayerControl : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Teleporter" && holdingWeapon)
-        {
-            if(holdingWeapon)
-            {
-               switch (collision.gameObject.name)
-                {
-                    case "level1":
-                        GM.LoadLevel(1);
-                        break;
-
-                    case "Level2":
-                        GM.LoadLevel(2);
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-
-            else
-            {
-                conditionText.SetActive(true);
-            }
-        }
+        conditionText.SetActive(true); 
     }
 
     // Gimme a second
